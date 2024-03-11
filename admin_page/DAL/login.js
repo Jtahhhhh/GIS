@@ -18,7 +18,7 @@ function checkLogin() {
             if (check == 0) {
                 alert("Welcome back");
                 
-                window.location.href = "index.php";
+                window.location.href = "index.html";
                 
                 // Redirect or perform further actions after successful login
             } else if (check == 1) {

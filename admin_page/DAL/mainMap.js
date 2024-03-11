@@ -1,8 +1,6 @@
-const { map } = require("jquery");
-
 // xin cấp phép và show vị trí hiện tại
 if (navigator.geolocation) {}
-fetch('BLL/main.php')
+fetch('BLL/map.php')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -11,6 +9,7 @@ fetch('BLL/main.php')
   })
   .then(data => {
     //cập nhật vị trí của admin để tạo bản đồ
+    console.log(data)
     navigator.geolocation.getCurrentPosition(function(position){
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
@@ -30,13 +29,13 @@ fetch('BLL/main.php')
       map.addLayer(layer);
       //Tạo các marker của tất cả các xe
       for(let i=0;i<data.length; i++){
-        if(data[i].TX_username != null){
-        var marker = L.marker([`${data[i].latitude}`, `${data[i].longitude}`])
-        marker.bindPopup('Tài Xế:'+data[i].TX_username)
+       
+        var marker = L.marker([`${data[i].TX_viTriX}`, `${data[i].TX_viTriY}`])
+        marker.bindPopup('Tài Xế:'+data[i].TX_USERNAME)
         marker.openPopup()
         marker.addTo(map)
-       }
-        else break; 
+       
+        
       }
       
 
