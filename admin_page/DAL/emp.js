@@ -6,22 +6,23 @@ fetch('BLL/emp.php')
     return response.json();
   })
   .then(data => {
-    console.log(data)
     const htmlArray = [];
+    console.log(data)
     data.forEach(ql => {
-      console.log(ql.QL_ten)
       htmlArray.push(`<tr>
-                <td>${ql.QL_MA}</td>
+                <td name="QL_MA">${ql.QL_MA}</td>
                 <td>${ql.QL_TEN}</td>
                 <td>${ql.QL_SODIENTHOAI}</td>
                 <td>${ql.QL_EMAIL}</td>
                 <td>
-                <form action="" method="get">
+                <form action="post" method="get">
                                 <input type="hidden" name="xid" value='${ql.QL_MA}'>
-                                <button class="btn btn-link" href=""><i class="fas fa-edit"></i></button>
+                                <button id="post" class="btn btn-link" > <i class="fas fa-edit"></i></button>
                             </form> 
                 `);
     });
+    
+
 
     document.getElementById('listQL').innerHTML =  htmlArray.join('')
       

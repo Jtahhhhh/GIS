@@ -9,7 +9,7 @@ fetch('BLL/map.php')
   })
   .then(data => {
     //cập nhật vị trí của admin để tạo bản đồ
-    console.log(data)
+    //console.log(data)
     navigator.geolocation.getCurrentPosition(function(position){
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
@@ -33,12 +33,8 @@ fetch('BLL/map.php')
         var marker = L.marker([`${data[i].TX_viTriX}`, `${data[i].TX_viTriY}`])
         marker.bindPopup('Tài Xế:'+data[i].TX_USERNAME)
         marker.openPopup()
-        marker.addTo(map)
-       
-        
+        marker.addTo(map) 
       }
-      
-
     })
       
   })

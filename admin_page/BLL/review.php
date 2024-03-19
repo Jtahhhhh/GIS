@@ -5,8 +5,10 @@
     // FROM chuyen_xe 
     // WHERE chuyen_xe.CX_trangThai = 0';
 
-    $sql = 'SELECT a.TX_MA, TX_ten, TX_sodienthoai , TT_tinhTrang , TX_viTriX AS latitude, TX_viTriY AS longitude, TX_username
-    FROM Tai_Xe as a, Trang_Thai as b where a.TX_ma = b.TX_ma and TT_tinhTrang = 0;';
+    $sql = "SELECT * from chuyen_xe as a,khach_hang as b,danh_gia as c,tai_xe as d
+    where a.KH_MA=b.KH_MA and  a.CX_MA=c.CX_MA and a.TX_MA= d.TX_MA and a.CX_MA='001'
+        LIMIT 1
+     ";
 
     // $sql = $sql1 . ' UNION ' . $sql2;
 

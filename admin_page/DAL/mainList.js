@@ -6,10 +6,13 @@ fetch('BLL/main.php')
     return response.json();
   })
   .then(data => {
-    //console.log(data)
+    console.log(data)
     const htmlArray = [];
+   
     data.forEach(tx => {  
+      console.log(tx.TX_MA)
       htmlArray.push(`<tr>
+                  <td><a href="driveDetect.html" name="TX_MA">${tx.TX_MA}</td>
                   <td>${tx.TX_ten}</td>
                   <td>${tx.TX_sodienthoai}</td>
                       </tr>`);
