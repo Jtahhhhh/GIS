@@ -1,29 +1,38 @@
-<?php 
-    require 'connect.php';
+<?php
+require 'connect.php';
 
-    // $sql = 'SELECT CX_toaDoKTx AS latitude, CX_toaDoKTy AS longitude, NULL AS TX_username
-    // FROM chuyen_xe 
-    // WHERE chuyen_xe.CX_trangThai = 0';
+// Kiểm tra xem biến $ma có tồn tại trong $_POST không trước khi sử dụng nó
+$ma = isset($_POST['$ma']) ? $_POST['$ma'] : '';
 
-    $sql = "SELECT * from chuyen_xe as a,khach_hang as b,danh_gia as c,tai_xe as d
-    where a.KH_MA=b.KH_MA and  a.CX_MA=c.CX_MA and a.TX_MA= d.TX_MA and a.CX_MA='001'
-        LIMIT 1
-     ";
+// Sử dụng câu lệnh chuẩn bị để ngăn chặn lỗ hổng SQL Injection
+$sql = "SELECT * FROM chuyen_xe AS a
+        INNER JOIN khach_hang AS b ON a.KH_MA = b.KH_MA
+        INNER JOIN danh_gia AS c ON a.CX_MA = c.CX_MA
+        INNER JOIN tai_xe AS d ON a.TX_MA = d.TX_MA
+        WHERE a.CX_MA = ?";
+        
+// Chuẩn bị câu lệnh
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('s', $ma); // Liên kết biến $ma với câu lệnh chuẩn bị
 
-    // $sql = $sql1 . ' UNION ' . $sql2;
+// Thực thi truy vấn
+$stmt->execute();
+$result = $stmt->get_result();
 
-    $result = $conn->query($sql);
+// Kiểm tra kết quả truy vấn
+if ($result->num_rows > 0) {
+    $data = array();
 
-
-    if ($result->num_rows > 0) {
-        $data = array();
-
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
-
-        echo json_encode($data);
-    } else {
-        echo json_encode(["message" => "Không có dữ liệu"]);
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
     }
+
+    echo json_encode($data);
+} else {
+    echo json_encode(["message" => "Không có dữ liệu"]);
+}
+
+// Đóng kết nối và câu lệnh chuẩn bị
+$stmt->close();
+$conn->close();
 ?>

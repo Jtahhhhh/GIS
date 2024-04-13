@@ -1,4 +1,4 @@
-fetch('BLL/review.php')
+fetch('tripReview.php')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -9,7 +9,7 @@ fetch('BLL/review.php')
     //cập nhật vị trí của admin để tạo bản đồ
       // Khai báo đối tượng bản đồ
       var mapOptions = {
-        center: [`${data[0].CX_TOADOBDX}`, `${data[0].CX_TOADOKTY}`],
+        center: [`${data[0]}`, `${data[1]}`],
         zoom: 10
       };
       var map = new L.map('map',mapOptions);
@@ -20,7 +20,7 @@ fetch('BLL/review.php')
       //Tạo các marker của tất cả các xe
      
       L.Routing.control({
-        waypoints: [[`${data[0].CX_TOADOBDX}`, `${data[0].CX_TOADOKTX}`],[`${data[0].CX_TOADOBDX}`, `${data[0].CX_TOADOKTY}`]],
+        waypoints: [[`${data[0]}`, `${data[1]}`],[`${data[2]}`, `${data[3]}`]],
         routeWhileDragging: true
         }).addTo(map);
 

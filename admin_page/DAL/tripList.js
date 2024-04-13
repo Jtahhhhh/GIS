@@ -1,5 +1,5 @@
-fetch('BLL/main.php')
-.then(response => {
+fetch('BLL/trip.php')
+  .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -8,15 +8,16 @@ fetch('BLL/main.php')
   .then(data => {
     console.log(data)
     const htmlArray = [];
-   
-    data.forEach(tx => {  
-      console.log(tx.TX_MA)
+    data.forEach(tx => {
       htmlArray.push(`<tr>
-                  <td>
-                  <td>${tx.TX_TEN}</td>
-                  <td>${tx.TX_SODIENTHOAI}</td>
-                  <td>
-                  <form action="driverDetect.php" method="post">
+                <td>${tx.CX_MA}</td>
+                <td>${tx.TX_TEN}</td>
+                <td>${tx.KH_TEN}</td>
+                <td>${tx.CX_TOADOBATDAU}</td>
+                <td>${tx.CX_NOIDEN}</td>
+                <td>${tx.DG_SAO}/5</td>
+                <td>
+                  <form action="tripReview.php" method="post">
 
                     <input type="hidden" name="cx_id" value='${tx.CX_MA}'>
                     <input type="hidden" name="TX_TEN" value='${tx.TX_TEN}'>
@@ -34,15 +35,13 @@ fetch('BLL/main.php')
 
                     <button class="btn" onclick=""><i class="fas fa-edit"></i></button>
                   </form>
-                      </tr>`);
+                </td>
+              </tr>`);
     });
-    
-    document.getElementById('Information').innerHTML =  htmlArray.join('')
-      
+    document.getElementById('listTX').innerHTML =  htmlArray.join('');
+
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
   });
-
-
 

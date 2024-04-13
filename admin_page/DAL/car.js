@@ -9,21 +9,43 @@ fetch('BLL/car.php')
     console.log(data)
     const htmlArray = [];
     data.forEach(tx => {
+      if(tx.TX_MA == null){
       htmlArray.push(`<tr>
-                <td>${tx.TX_ma}</td>
-                <td>${tx.TX_ten}</td>
-                <td>${tx.TX_sodienthoai}</td>
-                <td>${tx.TX_email}</td>
-                <td>${tx.X_ten}</td>
-                <td>${tx.DDG_SAO}/5</td>
+                <td>${tx.X_MA}</td>
+                <td>${tx.X_TEN}</td>
+                <td>${tx.X_BIENSO}</td>
+                <td>Chưa nhận bàn giao</td>
+                <td>${tx.X_THONGSO}</td>
                 <td>
-                  <form action="changeorDeleteEMP.php" method="get">
-                    <input type="hidden" name="xid" value='${tx.QL_MA}'>
-                    <button class="btn" onclick="redirectToChangeOrDeleteEMP(${tx})"><i class="fas fa-edit"></i></button>
-                  </form>
+                <form action="changeorDeleteCar.php" method="post">
+                <input type="hidden" name="X_MA" value='${tx.X_ma}'>
+                <input type="hidden" name="X_Ten" value='${tx.X_ten}'>
+                <input type="hidden" name="X_Bien" value='${tx.X_BIENSO}'>
+                <input type="hidden" name="X_ThongSo" value='${tx.X_THONGSO}'>
+                <button class="btn" type="submit"><i class="fas fa-edit"></i></button>
+              </form>
                 </td>
-              </tr>`);
-    });
+              </tr>`);}
+         else{
+          htmlArray.push(`<tr>
+                <td>${tx.X_MA}</td>
+                <td>${tx.X_TEN}</td>
+                <td>${tx.X_BIENSO}</td>
+                <td>${tx.TX_MA}</td>
+                <td>${tx.X_THONGSO}</td>
+                <td>
+                <form action="changeorDeleteCar.php" method="post">
+                <input type="hidden" name="X_MA" value='${tx.X_ma}'>
+                <input type="hidden" name="X_Ten" value='${tx.X_ten}'>
+                <input type="hidden" name="X_Bien" value='${tx.X_BIENSO}'>
+                <input type="hidden" name="X_ThongSo" value='${tx.X_THONGSO}'>
+                <input type="hidden" name="TX_MA" value='${tx.TX_MA}'>
+                <button class="btn" type="submit"><i class="fas fa-edit"></i></button>
+              </form>
+                </td>
+              </tr>`);}
+    })
+    
     document.getElementById('listTX').innerHTML =  htmlArray.join('');
 
   })

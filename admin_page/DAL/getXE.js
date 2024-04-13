@@ -20,4 +20,3 @@ fetch('BLL/getXE.php')
   });
 
 
-

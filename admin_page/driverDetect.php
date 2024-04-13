@@ -1,3 +1,33 @@
+<?php
+         if (
+            isset($_POST["cx_id"]) && isset($_POST["TX_TEN"]) && isset($_POST["KH_TEN"]) &&
+            isset($_POST["KH_SDT"]) && isset($_POST["TX_SDT"]) && isset($_POST["sao"]) &&
+            isset($_POST["bdx"]) && isset($_POST["bdy"]) && isset($_POST["ktx"]) &&
+            isset($_POST["kty"]) && isset($_POST["noidung"])
+            
+        ) {
+            // Sanitize and validate input data
+            $bd=$_POST['BD'];
+            $kt=$_POST['KT'];
+            $ma = $_POST["cx_id"];
+            $tx_TEN = $_POST["TX_TEN"];
+            $tx_SDT = $_POST["TX_SDT"];
+            $KH_TEN = $_POST["KH_TEN"];
+            $KH_SDT = $_POST["KH_SDT"];
+            $sao = $_POST["sao"];
+            $bdx = $_POST["bdx"];
+            $bdy = $_POST["bdy"];
+            $ktx = $_POST["ktx"];
+            $kty = $_POST["kty"];
+            $noidung = $_POST["noidung"];
+
+        } else {
+            echo '<script language="javascript">';
+            echo "console.log ('Không có dữ liệu POST được gửi đến!')";
+            echo '</script>';
+        }
+        
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -355,7 +385,6 @@
                               <!-- Card Body -->
                               <div class="card-body"  >
                                  <div class="chart-area" id="map"></div>
-                          
                               </div>
                           </div>
                       </div>
@@ -378,7 +407,13 @@
                                      
                                       </tr>
                                       </thead>
-                                  <tbody id="Information" >    
+                                  <tbody id="TaiXe" > 
+                                  <?php
+                                    echo "<tr>
+                                    <td>$tx_TEN</td>
+                                    <td>$tx_SDT</td>
+                                   </tr>"
+                                   ?>   
                                   </tbody>
                           </table>
                               </div>
@@ -402,12 +437,48 @@
                                
                                 </tr>
                                 </thead>
-                            <tbody id="Information" >    
+                            <tbody id="KhachHang" >
+                            <?php
+                                    echo "<tr>
+                                    <td>$KH_TEN</td>
+                                    <td>$KH_SDT</td>
+                                   </tr>"
+                                   ?>     
                             </tbody>
                     </table>
+                    
                         </div>
                     </div>
                 </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Review</h6>
+                        </div>
+                       <div class="table-responsive">
+                <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                    
+                        <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                            <thead>
+                            <tr id="1">
+
+                            <th>Sao</th>
+                            <th>Đánh Giá</th>
+                            
+                            </tr>
+                            </thead>
+                        <tbody id="Information" >
+                        <?php
+                                    echo "<tr>
+                                    <td>$sao</td>
+                                    <td>$noidung</td>
+                                   </tr>"
+                                   ?>      
+                        </tbody>
+                </table>
+                    </div>
+                </div>
+            </div>
                       </div>
                 
 
@@ -490,6 +561,58 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="DAL/txMap .js"></script>
+    <script>
+    var bdx = <?php echo json_encode($bdx); ?>;
+    var bdy = <?php echo json_encode($bdy); ?>;
+    var ktx = <?php echo json_encode($ktx); ?>;
+    var kty = <?php echo json_encode($kty); ?>;
+    var bd = <?php echo json_encode($bd); ?>;
+    var kt = <?php echo json_encode($kt); ?>;
+    console.log(bdx, bdy,ktx,kty)
+    var mapOptions = {center: [bdx, bdy], zoom: 10}; // Removed unnecessary backticks
+    var map = new L.map('map', mapOptions);
+    var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'); // Removed unnecessary semicolon
+    map.addLayer(layer);
+    // Tạo điểm xuất phát và điểm đích
+// Tạo điểm xuất phát và điểm đích
+var startPoint = L.latLng(bdx, bdy);
+var endPoint = L.latLng(ktx, kty);
+
+// Tạo routing control và thêm vào bản đồ
+var routingControl = L.Routing.control({
+    waypoints: [startPoint, endPoint],
+    routeWhileDragging: true
+}).on('routesfound', function (e) {
+    var routes = e.routes;
+    console.log(routes);
+    var route = routes[0]; 
+    var steps = route.coordinates.length; 
+    var stepDuration = 100; 
+    var totalDuration = steps * stepDuration; 
+
+    var currentIndex = 0; 
+    var marker = L.marker(route.coordinates[0]).addTo(map);
+
+    function moveMarker() {
+        marker.setLatLng(route.coordinates[currentIndex]); 
+        currentIndex++; 
+
+        if (currentIndex < steps) {
+            setTimeout(moveMarker, stepDuration);
+        }
+    }
+
+    moveMarker(); // Bắt đầu di chuyển marker
+}).addTo(map);
+          L.control.maptilerGeocoding({ apiKey: key }).addTo(map);
+// Tạo marker cho điểm xuất phát và gán popup
+var startMarker = L.marker(startPoint).bindPopup('Nơi Đi').addTo(map);
+
+// Tạo marker cho điểm đích và gán popup
+var endMarker = L.marker(endPoint).bindPopup('Nơi Đến').addTo(map);
+
+
+</script>
+
 </body>
 </html>

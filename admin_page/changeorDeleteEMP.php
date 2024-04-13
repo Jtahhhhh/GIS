@@ -1,3 +1,20 @@
+<?php
+            if(isset($_POST["id"]) && isset($_POST["name"]) && isset($_POST["sdt"]) && isset($_POST["email"])) {
+                $ma = $_POST["id"];
+                $ten = $_POST["name"];
+                $sdt = $_POST["sdt"];
+                $email = $_POST["email"];
+                $user = $_POST["user"];
+                echo '<script language="javascript">';
+                echo "console.log('suscess')"  ;
+                echo '</script>';
+            } else {
+                // Xử lý khi không có dữ liệu POST được gửi đến
+                echo '<script language="javascript">';
+                echo "console.log('Không có dữ liệu POST được gửi đến!')";
+                echo '</script>';
+            }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -334,46 +351,40 @@ Sidebar Toggler (Sidebar)
               <div class="col-lg-3"></div>
               <div class="col-6 col-md-6 col-lg-6">
                 <div class="card">
-                <form method="POST" action="" enctype="multipart/form-data">
-                
-                  <input type="hidden" name="maxe" value="">
+                <form method="POST" action="BLL/changeEMP.php" enctype="multipart/form-data">
                     <div class="card-header">
-                      <h4>Thêm nhân viên</h4>
+                      <h4>Chỉnh sửa nhân viên</h4>
                     </div>
                     <div class="card-body">
                       <div class="form-group">
                         <label>Quận Huyện</label>
-                        <select name="loai" id="QH" class="form-control">
+                        <select name="QH" id="QH" class="form-control">
                         </select>
                       </div>
                       <div class="form-group">
                         <label>Tên Nhân Viên</label>
-                        <input type="text" class="form-control" id="TX_MA" name="biensoxe">
+                        <input type="text" class="form-control" id="QL_TEN" name="QL_TEN" value="<?php echo $ten; ?>">
                       </div>
-                      <div class="form-group">
-                        <label>Tên Nhân Viên</label>
-                        <input type="text" class="form-control" id="ten" name="biensoxe">
-                      </div>
-
                       <div class="form-group">
                         <label>Số Điện Thoại</label>
-                        <input type="text" class="form-control" id="sdt" name="mota">
+                        <input type="text" class="form-control" id="QL_SDT" name="QL_SDT" value="<?php echo $sdt; ?>">
                       </div>
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" id="mail" name="mota">
+                        <input type="text" class="form-control" id="QL_MAIL" name="QL_MAIL" value="<?php echo $email; ?>">
                       </div>
                       <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" id="user" name="mota">
+                        <input type="text" class="form-control" id="QL_USERNAME" name="QL_USERNAME" value="<?php echo $user; ?>">
                       </div>
                       <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" id="pass" name="mota">
+                        <input type="password" class="form-control" id="QL_PASSWORD" name="QL_PASSWORD">
                       </div>
                     </div>
                     <div class="card-footer text-right">
-                      <button id="addEMP" class="btn btn-primary" class="mt-2">Thêm Nhân Viên</button>
+                     <button id="deleteEMP" class="btn btn-primary" class="mt-2" style="background-color: red;">Xóa Thông tin</button>
+                      <button id="change" type="submit" class="btn btn-primary" class="mt-2">Sửa Thông tin</button>
                     </div>
                     </div>
                     
@@ -449,7 +460,7 @@ Sidebar Toggler (Sidebar)
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script src="DAL/getQH.js"></script>
-    <sript src="DAL/driver.js">
+    <sript src="DAL/emp.js">
     <sript src="DAL/changeorDelete.js">
 
 </body>

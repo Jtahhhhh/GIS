@@ -1,3 +1,33 @@
+<?php
+         if (
+            isset($_POST["cx_id"]) && isset($_POST["TX_TEN"]) && isset($_POST["KH_TEN"]) &&
+            isset($_POST["KH_SDT"]) && isset($_POST["TX_SDT"]) && isset($_POST["sao"]) &&
+            isset($_POST["bdx"]) && isset($_POST["bdy"]) && isset($_POST["ktx"]) &&
+            isset($_POST["kty"]) && isset($_POST["noidung"])
+            
+        ) {
+            // Sanitize and validate input data
+            $bd=$_POST['BD'];
+            $kt=$_POST['KT'];
+            $ma = $_POST["cx_id"];
+            $tx_TEN = $_POST["TX_TEN"];
+            $tx_SDT = $_POST["TX_SDT"];
+            $KH_TEN = $_POST["KH_TEN"];
+            $KH_SDT = $_POST["KH_SDT"];
+            $sao = $_POST["sao"];
+            $bdx = $_POST["bdx"];
+            $bdy = $_POST["bdy"];
+            $ktx = $_POST["ktx"];
+            $kty = $_POST["kty"];
+            $noidung = $_POST["noidung"];
+
+        } else {
+            echo '<script language="javascript">';
+            echo "console.log ('Không có dữ liệu POST được gửi đến!')";
+            echo '</script>';
+        }
+        
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -355,7 +385,6 @@
                               <!-- Card Body -->
                               <div class="card-body"  >
                                  <div class="chart-area" id="map"></div>
-                          
                               </div>
                           </div>
                       </div>
@@ -378,7 +407,13 @@
                                      
                                       </tr>
                                       </thead>
-                                  <tbody id="TaiXe" >    
+                                  <tbody id="TaiXe" > 
+                                  <?php
+                                    echo "<tr>
+                                    <td>$tx_TEN</td>
+                                    <td>$tx_SDT</td>
+                                   </tr>"
+                                   ?>   
                                   </tbody>
                           </table>
                               </div>
@@ -402,7 +437,13 @@
                                
                                 </tr>
                                 </thead>
-                            <tbody id="KhachHang" >    
+                            <tbody id="KhachHang" >
+                            <?php
+                                    echo "<tr>
+                                    <td>$KH_TEN</td>
+                                    <td>$KH_SDT</td>
+                                   </tr>"
+                                   ?>     
                             </tbody>
                     </table>
                     
@@ -426,7 +467,13 @@
                             
                             </tr>
                             </thead>
-                        <tbody id="Information" >    
+                        <tbody id="Information" >
+                        <?php
+                                    echo "<tr>
+                                    <td>$sao</td>
+                                    <td>$noidung</td>
+                                   </tr>"
+                                   ?>      
                         </tbody>
                 </table>
                     </div>
@@ -514,7 +561,37 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="DAL/rvMap.js"></script>
-    <script src="DAL/rvList.js"></script>
+    <script>
+    var bdx = <?php echo json_encode($bdx); ?>;
+    var bdy = <?php echo json_encode($bdy); ?>;
+    var ktx = <?php echo json_encode($ktx); ?>;
+    var kty = <?php echo json_encode($kty); ?>;
+    var bd = <?php echo json_encode($bd); ?>;
+    var kt = <?php echo json_encode($kt); ?>;
+    console.log(bdx, bdy,ktx,kty)
+    var mapOptions = {center: [bdx, bdy], zoom: 10}; // Removed unnecessary backticks
+    var map = new L.map('map', mapOptions);
+    var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'); // Removed unnecessary semicolon
+    map.addLayer(layer);
+    // Tạo điểm xuất phát và điểm đích
+// Tạo điểm xuất phát và điểm đích
+var startPoint = L.latLng(bdx, bdy);
+var endPoint = L.latLng(ktx, kty);
+
+// Tạo routing control và thêm vào bản đồ
+var routingControl = L.Routing.control({
+    waypoints: [startPoint, endPoint]
+}).addTo(map);
+
+
+// Tạo marker cho điểm xuất phát và gán popup
+var startMarker = L.marker(startPoint).bindPopup('Nơi Đi').addTo(map);
+
+// Tạo marker cho điểm đích và gán popup
+var endMarker = L.marker(endPoint).bindPopup('Nơi Đến').addTo(map);
+
+
+</script>
+
 </body>
 </html>

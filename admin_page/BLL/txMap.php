@@ -1,16 +1,14 @@
 <?php 
-    require 'connect.php';
+require 'connect.php';
 
-    // $sql = 'SELECT CX_toaDoKTx AS latitude, CX_toaDoKTy AS longitude, NULL AS TX_username
-    // FROM chuyen_xe 
-    // WHERE chuyen_xe.CX_trangThai = 0';
+// Check if id is provided via POST
+if(isset($_POST["id"])) {
+    $id = $_POST["id"];
 
-    $sql = 'SELECT * from chuyen_xe';
-
-    // $sql = $sql1 . ' UNION ' . $sql2;
+    // Query to fetch data based on provided id
+    $sql = "SELECT * FROM chuyen_xe WHERE CX_trangThai = 0 AND TX_MA = $id";
 
     $result = $conn->query($sql);
-
 
     if ($result->num_rows > 0) {
         $data = array();
@@ -23,4 +21,7 @@
     } else {
         echo json_encode(["message" => "Không có dữ liệu"]);
     }
+} else {
+    echo json_encode(["message" => "Không có dữ liệu"]);
+}
 ?>

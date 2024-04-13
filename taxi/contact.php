@@ -17,6 +17,17 @@
 		<title>Taxi</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+
+					 <!-- leaflet css  -->
+					 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+			integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+			crossorigin=""/>
+			<!-- Make sure you put this AFTER Leaflet's CSS -->
+			<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+			integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+			crossorigin=""></script>
+
+
 			<!--
 			CSS
 			============================================= -->
@@ -30,38 +41,15 @@
 			<link rel="stylesheet" href="css/main.css">
 		</head>
 		<body>	
-			  <header id="header">
+				<header id="header">
 		  		<div class="header-top">
-				</div>
-			    <div class="container main-menu">
-			    	<div class="row align-items-center justify-content-between d-flex">
-			    		<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>		
-						<nav id="nav-menu-container">
-							<ul class="nav-menu">
-							  <li class="menu-active"><a href="index.html">Home</a></li>
-							  <li><a href="about.html">About</a></li>
-							  <li><a href="service.html">Services</a></li>
-							  <li><a href="gallery.html">Gallery</a></li>
-							  <li class="menu-has-children"><a href="">Blog</a>
-							    <ul>
-							      <li><a href="blog-home.html">Blog Home</a></li>
-							      <li><a href="blog-single.html">Blog Single</a></li>
-							      <li class="menu-has-children"><a href="">Level 2</a>
-							        <ul>
-							          <li><a href="#">Item One</a></li>
-							          <li><a href="#">Item Two</a></li>
-							        </ul>
-							      </li>					              
-							    </ul>
-							  </li>
-							  <li><a href="elements.html">Elements</a></li>							  			          	          
-							  <li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav><!-- #nav-menu-container -->		
-			    	</div>
-			    </div>
-			  </header><!-- #header -->
+					</div>
+			   <!-- nav -->
+					<?php
+						include "nav.php"
+					?>
 
+			  </header><!-- #header -->
 			<!-- start banner Area -->
 			<section class="banner-area relative about-banner" id="home">	
 				<div class="overlay overlay-bg"></div>
@@ -216,10 +204,57 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</footer>	
 			<!-- End footer Area -->	
 
+			<script>
+    const map = L.map('map');
+    // Initializes map
+    map.setView([51.505, -0.09], 13);
+    // Sets initial coordinates and zoom level
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    // Sets map data source and associates with map
+    let marker, circle, zoomed;
+    navigator.geolocation.watchPosition(success, error);
+
+    function success(pos) {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      const accuracy = pos.coords.accuracy;
+      if (marker) {
+        map.removeLayer(marker);
+        map.removeLayer(circle);
+      }
+      // Removes any existing marker and circule (new ones about to be set)
+      marker = L.marker([lat, lng]).addTo(map);
+      circle = L.circle([lat, lng], {
+        radius: accuracy
+      }).addTo(map);
+      // Adds marker to the map and a circle for accuracy
+      if (!zoomed) {
+        zoomed = map.fitBounds(circle.getBounds());
+      }
+      // Set zoom to boundaries of accuracy circle
+      map.setView([lat, lng]);
+      // Set map focus to current user position
+    }
+
+    function error(err) {
+      if (err.code === 1) {
+        alert("Please allow geolocation access");
+      } else {
+        alert("Cannot get current location");
+      }
+    }
+  	</script>
+
+
+
+
 			<script src="js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 			<script src="js/vendor/bootstrap.min.js"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+			<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
   			<script src="js/easing.min.js"></script>			
 			<script src="js/hoverIntent.js"></script>
 			<script src="js/superfish.min.js"></script>	

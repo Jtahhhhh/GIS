@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 	<head>
 		<!-- Mobile Specific Meta -->
@@ -30,40 +30,18 @@
 			<link rel="stylesheet" href="css/main.css">
 		</head>
 		<body>	
-			  <header id="header">
+				<header id="header">
 		  		<div class="header-top">
-				</div>
-			    <div class="container main-menu">
-			    	<div class="row align-items-center justify-content-between d-flex">
-			    		<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>		
-						<nav id="nav-menu-container">
-							<ul class="nav-menu">
-							  <li class="menu-active"><a href="index.html">Home</a></li>
-							  <li><a href="about.html">About</a></li>
-							  <li><a href="service.html">Services</a></li>
-							  <li><a href="gallery.html">Gallery</a></li>
-							  <li class="menu-has-children"><a href="">Blog</a>
-							    <ul>
-							      <li><a href="blog-home.html">Blog Home</a></li>
-							      <li><a href="blog-single.html">Blog Single</a></li>
-							      <li class="menu-has-children"><a href="">Level 2</a>
-							        <ul>
-							          <li><a href="#">Item One</a></li>
-							          <li><a href="#">Item Two</a></li>
-							        </ul>
-							      </li>					              
-							    </ul>
-							  </li>
-							  <li><a href="elements.html">Elements</a></li>							  			          	          
-							  <li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav><!-- #nav-menu-container -->		
-			    	</div>
-			    </div>
+					</div>
+			   <!-- nav -->
+				<?php
+					include "nav.php"
+				?>
+
 			  </header><!-- #header -->
 
 			<!-- start banner Area -->
-			<section class="banner-area relative blog-home-banner" id="home">	
+			<!-- <section class="banner-area relative blog-home-banner" id="home">	
 				<div class="overlay overlay-bg"></div>
 				<div class="container">				
 					<div class="row d-flex align-items-center justify-content-center">
@@ -79,7 +57,7 @@
 						</div>	
 					</div>
 				</div>
-			</section>
+			</section> -->
 			<!-- End banner Area -->				  
 
 			<!-- Start top-category-widget Area -->
@@ -90,14 +68,14 @@
 							<div class="single-cat-widget">
 								<div class="content relative">
 									<div class="overlay overlay-bg"></div>
-								    <a href="#" target="_blank">
+								    <a href="lichsudatxe.php" target="_blank">
 								      <div class="thumb">
 								  		 <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="">
 								  	  </div>
 								      <div class="content-details">
-								        <h4 class="content-title mx-auto text-uppercase">Social life</h4>
+								        <h4 class="content-title mx-auto text-uppercase">LỊCH SỬ ĐẶT XE</h4>
 								        <span></span>								        
-								        <p>Enjoy your social life together</p>
+								        <p>Lịch sử đặt xe của khách hàng</p>
 								      </div>
 								    </a>
 								</div>
@@ -107,14 +85,14 @@
 							<div class="single-cat-widget">
 								<div class="content relative">
 									<div class="overlay overlay-bg"></div>
-								    <a href="#" target="_blank">
+								    <a href="xemdanhgia.php" target="_blank">
 								      <div class="thumb">
 								  		 <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget2.jpg" alt="">
 								  	  </div>
 								      <div class="content-details">
-								        <h4 class="content-title mx-auto text-uppercase">Politics</h4>
+								        <h4 class="content-title mx-auto text-uppercase">XEM ĐÁNH GIÁ CHUYẾN XE</h4>
 								        <span></span>								        
-								        <p>Be a part of politics</p>
+								        <p>Khách hàng đánh giá chuyến xe đã đặt</p>
 								      </div>
 								    </a>
 								</div>
@@ -129,9 +107,9 @@
 								  		 <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget3.jpg" alt="">
 								  	  </div>
 								      <div class="content-details">
-								        <h4 class="content-title mx-auto text-uppercase">Food</h4>
+								        <h4 class="content-title mx-auto text-uppercase">Điểm tích lũy</h4>
 								        <span></span>
-								        <p>Let the food be finished</p>
+								        <p>Xem thông tin điểm tích lũy</p>
 								      </div>
 								    </a>
 								</div>
@@ -147,136 +125,57 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-8 posts-list">
+							<?php
+								$khid = $_SESSION["id"];
+								$sql = "select cx.CX_MA, cx.CX_NOIDEN, cx.CX_trangThai, kh.KH_TEN, tx.TX_TEN
+													from chuyen_xe cx
+													join khach_hang kh on kh.KH_MA=cx.KH_MA
+													join tai_xe tx on tx.TX_MA=cx.TX_MA
+													where cx.KH_MA={$khid}
+													GROUP BY cx.CX_MA
+                          order by cx.CX_MA desc";
+								$result = $conn->query( $sql );
+								if($result->num_rows>0){
+									while($row = $result->fetch_assoc()){
+										
+
+								?>
+
 							<div class="single-post row">
 								<div class="col-lg-3  col-md-3 meta-details">
 									<ul class="tags">
-										<li><a href="#">Food,</a></li>
-										<li><a href="#">Technology,</a></li>
+										<li><a href="#"><?php echo "CHUYẾN XE #".$row["CX_MA"] ?></a></li>
+										<!-- <li><a href="#">Technology,</a></li>
 										<li><a href="#">Politics,</a></li>
-										<li><a href="#">Lifestyle</a></li>
+										<li><a href="#">Lifestyle</a></li> -->
 									</ul>
 									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span class="lnr lnr-user"></span></p>
-										<p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span class="lnr lnr-calendar-full"></span></p>
-										<p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span class="lnr lnr-eye"></span></p>
-										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>						
+										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#"><?php echo $row["TX_TEN"] ?></a> <span class="lnr lnr-user"></span></p>
+										<!-- <p class="view col-lg-12 col-md-12 col-6"><a href="#"><?php echo $row["DG_SAO"] ?></a> <span class="lnr lnr-star"></span></p> -->
+										<p class="date col-lg-12 col-md-12 col-6"><a href="#"><?php echo $row["CX_NOIDEN"] ?></a> <span class="lnr lnr-map-marker"></span></p>
+										
+										<!-- <p class="comments col-lg-12 col-md-12 col-6"><a href="#"><?php echo $row["TX_TEN"] ?></a> <span class="lnr lnr-bubble"></span></p>						 -->
 									</div>
 								</div>
 								<div class="col-lg-9 col-md-9 ">
 									<div class="feature-img">
-										<img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
+										<img class="img-fluid" src="img/g6.jpg" alt="" width="50%" height="200px">
 									</div>
-									<a class="posts-title" href="blog-single.html"><h3>Astronomy Binoculars A Great Alternative</h3></a>
-									<p class="excert">
+									<!-- <a class="posts-title" href="blog-single.html"><h4><?php echo $row["DG_NOIDUNG"] ?></h4></a> -->
+									<!-- <p class="excert">
 										MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-									</p>
-									<a href="blog-single.html" class="primary-btn">View More</a>
+									</p> -->
+									<a href="raiting.php?idcx=<?php echo $row["CX_MA"]; ?>" type="submit" name="danhgia" class="primary-btn">Đánh giá</a>
 								</div>
 							</div>
-							<div class="single-post row">
-								<div class="col-lg-3  col-md-3 meta-details">
-									<ul class="tags">
-										<li><a href="#">Food,</a></li>
-										<li><a href="#">Technology,</a></li>
-										<li><a href="#">Politics,</a></li>
-										<li><a href="#">Lifestyle</a></li>
-									</ul>
-									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span class="lnr lnr-user"></span></p>
-										<p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span class="lnr lnr-calendar-full"></span></p>
-										<p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span class="lnr lnr-eye"></span></p>
-										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>						
-									</div>
-								</div>
-								<div class="col-lg-9 col-md-9 ">
-									<div class="feature-img">
-										<img class="img-fluid" src="img/blog/feature-img2.jpg" alt="">
-									</div>
-									<a class="posts-title" href="blog-single.html"><h3>The Basics Of Buying A Telescope</h3></a>
-									<p class="excert">
-										MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-									</p>
-									<a href="blog-single.html" class="primary-btn">View More</a>
-								</div>
-							</div>
-							<div class="single-post row">
-								<div class="col-lg-3  col-md-3 meta-details">
-									<ul class="tags">
-										<li><a href="#">Food,</a></li>
-										<li><a href="#">Technology,</a></li>
-										<li><a href="#">Politics,</a></li>
-										<li><a href="#">Lifestyle</a></li>
-									</ul>
-									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span class="lnr lnr-user"></span></p>
-										<p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span class="lnr lnr-calendar-full"></span></p>
-										<p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span class="lnr lnr-eye"></span></p>
-										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>						
-									</div>
-								</div>
-								<div class="col-lg-9 col-md-9">
-									<div class="feature-img">
-										<img class="img-fluid" src="img/blog/feature-img3.jpg" alt="">
-									</div>
-									<a class="posts-title" href="blog-single.html"><h3>The Glossary Of Telescopes</h3></a>
-									<p class="excert">
-										MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-									</p>
-									<a href="blog-single.html" class="primary-btn">View More</a>
-								</div>
-							</div>
-							<div class="single-post row">
-								<div class="col-lg-3  col-md-3 meta-details">
-									<ul class="tags">
-										<li><a href="#">Food,</a></li>
-										<li><a href="#">Technology,</a></li>
-										<li><a href="#">Politics,</a></li>
-										<li><a href="#">Lifestyle</a></li>
-									</ul>
-									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span class="lnr lnr-user"></span></p>
-										<p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span class="lnr lnr-calendar-full"></span></p>
-										<p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span class="lnr lnr-eye"></span></p>
-										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>						
-									</div>
-								</div>
-								<div class="col-lg-9 col-md-9">
-									<div class="feature-img">
-										<img class="img-fluid" src="img/blog/feature-img4.jpg" alt="">
-									</div>
-									<a class="posts-title" href="blog-single.html"><h3>The Night Sky</h3></a>
-									<p class="excert">
-										MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-									</p>
-									<a href="blog-single.html" class="primary-btn">View More</a>
-								</div>
-							</div>
-							<div class="single-post row">
-								<div class="col-lg-3 col-md-3 meta-details">
-									<ul class="tags">
-										<li><a href="#">Food,</a></li>
-										<li><a href="#">Technology,</a></li>
-										<li><a href="#">Politics,</a></li>
-										<li><a href="#">Lifestyle</a></li>
-									</ul>
-									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span class="lnr lnr-user"></span></p>
-										<p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span class="lnr lnr-calendar-full"></span></p>
-										<p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span class="lnr lnr-eye"></span></p>
-										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>						
-									</div>
-								</div>
-								<div class="col-lg-9 col-md-9">
-									<div class="feature-img">
-										<img class="img-fluid" src="img/blog/feature-img5.jpg" alt="">
-									</div>
-									<a class="posts-title" href="blog-single.html"><h3>Telescopes 101</h3></a>
-									<p class="excert">
-										MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-									</p>
-									<a href="blog-single.html" class="primary-btn">View More</a>
-								</div>
-							</div>														
+								<?php
+									
+									}
+								}
+							?>
+							
+							
+																				
 		                    <nav class="blog-pagination justify-content-center d-flex">
 		                        <ul class="pagination">
 		                            <li class="page-item">
@@ -286,8 +185,8 @@
 		                                    </span>
 		                                </a>
 		                            </li>
-		                            <li class="page-item"><a href="#" class="page-link">01</a></li>
-		                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
+		                            <li class="page-item active"><a href="#" class="page-link">01</a></li>
+		                            <li class="page-item "><a href="#" class="page-link">02</a></li>
 		                            <li class="page-item"><a href="#" class="page-link">03</a></li>
 		                            <li class="page-item"><a href="#" class="page-link">04</a></li>
 		                            <li class="page-item"><a href="#" class="page-link">09</a></li>

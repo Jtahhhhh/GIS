@@ -4,10 +4,8 @@
     // $sql = 'SELECT CX_toaDoKTx AS latitude, CX_toaDoKTy AS longitude, NULL AS TX_username
     // FROM chuyen_xe 
     // WHERE chuyen_xe.CX_trangThai = 0';
-
-    $sql = 'SELECT a.TX_MA, TX_ten, TX_sodienthoai , TT_tinhTrang , TX_viTriX AS latitude, TX_viTriY AS longitude, TX_username
-    FROM Tai_Xe as a, Trang_Thai as b where a.TX_ma = b.TX_ma and TT_tinhTrang = 0;';
-
+    $sql ='select * from chuyen_xe as a,khach_hang as b, tai_xe as c, danh_gia as d, trang_thai as e
+    where a.KH_MA=b.KH_MA and a.TX_MA=c.TX_MA and a.CX_MA=d.CX_MA and c.TX_ma=e.TX_MA and TT_tinhTrang=1';
     // $sql = $sql1 . ' UNION ' . $sql2;
 
     $result = $conn->query($sql);

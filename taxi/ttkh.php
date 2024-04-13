@@ -30,127 +30,100 @@
 			<link rel="stylesheet" href="css/main.css">
 		</head>
 		<body>	
-			  <header id="header">
+				<header id="header">
 		  		<div class="header-top">
-				</div>
-			    <div class="container main-menu">
-			    	<div class="row align-items-center justify-content-between d-flex align-items-center">
-			    		<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>		
-						<nav id="nav-menu-container">
-							<ul class="nav-menu">
-							  <li class="menu-active"><a href="index.html">Home</a></li>
-							  <li><a href="about.html">About</a></li>
-							  <li><a href="service.html">Services</a></li>
-							  <li><a href="gallery.html">Gallery</a></li>
-							  <li class="menu-has-children"><a href="">Blog</a>
-							    <ul>
-							      <li><a href="blog-home.html">Blog Home</a></li>
-							      <li><a href="blog-single.html">Blog Single</a></li>
-							      <li class="menu-has-children"><a href="">Level 2</a>
-							        <ul>
-							          <li><a href="#">Item One</a></li>
-							          <li><a href="#">Item Two</a></li>
-							        </ul>
-							      </li>					              
-							    </ul>
-							  </li>
-							  <li><a href="elements.html">Elements</a></li>							  			          	          
-							  <li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav><!-- #nav-menu-container -->		
-			    	</div>
-			    </div>
+					</div>
+			   <!-- nav -->
+				<?php
+					include "nav.php"
+				?>
+
 			  </header><!-- #header -->
-			  
+
 			<!-- start banner Area -->
-			<section class="banner-area relative about-banner" id="home">	
+			<!-- <section class="banner-area relative blog-home-banner" id="home">	
 				<div class="overlay overlay-bg"></div>
 				<div class="container">				
 					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
+						<div class="about-content blog-header-content col-lg-12">
 							<h1 class="text-white">
-								Services				
+								Dude You’re Getting
+								a Telescope				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="service.html"> Services</a></p>
+							<p class="text-white">
+								There is a moment in the life of any aspiring astronomer that it is time to buy that first
+							</p>
+							<a href="blog-single.html" class="primary-btn">View More</a>
 						</div>	
 					</div>
 				</div>
-			</section>
-			<!-- End banner Area -->	
+			</section> -->
+			<!-- End banner Area -->				  
 
-			<!-- Start services Area -->
-			<section class="services-area section-gap">
+			<!-- Start top-category-widget Area -->
+			<section class="top-category-widget-area pt-90 pb-90 ">
 				<div class="container">
-					<div class="row section-title">
-						<h1>What Services we offer to our clients</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>
-					<div class="row">
-						<div class="col-lg-4 single-service">
-							<span class="lnr lnr-car"></span>
-							<a href="#"><h4>Taxi Service</h4></a>
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>
+					<div class="row">		
+						<div class="col-lg-6">
+							<div class="single-cat-widget">
+								<div class="content relative">
+									<div class="overlay overlay-bg"></div>
+								    <a href="lichsudatxe.php" target="_blank">
+								      <div class="thumb">
+								  		 <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="">
+								  	  </div>
+								      <div class="content-details">
+								        <h4 class="content-title mx-auto text-uppercase">LỊCH SỬ ĐẶT XE</h4>
+								        <span></span>								        
+								        <p>Lịch sử đặt xe của khách hàng</p>
+								      </div>
+								    </a>
+								</div>
+							</div>
 						</div>
-						<div class="col-lg-4 single-service">
-							<span class="lnr lnr-briefcase"></span>
-							<a href="#"><h4>Office Pick-ups</h4></a>
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>
+						<div class="col-lg-6">
+							<div class="single-cat-widget">
+								<div class="content relative">
+									<div class="overlay overlay-bg"></div>
+								    <a href="xemdanhgia.php" target="_blank">
+								      <div class="thumb">
+								  		 <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget2.jpg" alt="">
+								  	  </div>
+								      <div class="content-details">
+								        <h4 class="content-title mx-auto text-uppercase">XEM ĐÁNH GIÁ CHUYẾN XE</h4>
+								        <span></span>								        
+								        <p>Khách hàng đánh giá chuyến xe đã đặt</p>
+								      </div>
+								    </a>
+								</div>
+							</div>
 						</div>
-						<div class="col-lg-4 single-service">
-							<span class="lnr lnr-bus"></span>
-							<a href="#"><h4>Event Transportation</h4></a>
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>
-						</div>												
-					</div>	
-				</div>	
-			</section>
-			<!-- End services Area -->
-
-			<!-- Start home-calltoaction Area -->
-			<section class="home-calltoaction-area relative">
-				<div class="container">
-					<div class="overlay overlay-bg"></div>
-					<div class="row align-items-center section-gap">
-						<div class="col-lg-8">
-							<h1>Experience Great Support</h1>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-							</p>
-						</div>
-						<div class="col-lg-4 btn-left">
-							<a href="#" class="primary-btn">Reach Our Support Team</a>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End home-calltoaction Area -->
-
-			<!-- Start home-about Area -->
-			<section class="home-about-area section-gap">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-6 about-left">
-							<img class="img-fluid" src="img/about-img.jpg" alt="">
-						</div>
-						<div class="col-lg-6 about-right">
-							<h1>Globally Connected
-							by Large Network</h1>
-							<h4>We are here to listen from you deliver exellence</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.								
-							</p>
-							<a class="text-uppercase primary-btn" href="#">Get Details</a>
-						</div>
+						<!-- <div class="col-lg-4">
+							<div class="single-cat-widget">
+								<div class="content relative">
+									<div class="overlay overlay-bg"></div>
+								    <a href="diemtichluy.php" target="_blank">
+								      <div class="thumb">
+								  		 <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget3.jpg" alt="">
+								  	  </div>
+								      <div class="content-details">
+								        <h4 class="content-title mx-auto text-uppercase">Điểm tích lũy</h4>
+								        <span></span>
+								        <p>Xem thông tin điểm tích lũy</p>
+								      </div>
+								    </a>
+								</div>
+							</div>
+						</div>												 -->
 					</div>
 				</div>	
 			</section>
-			<!-- End home-about Area -->												
-				    																			
+			<!-- End top-category-widget Area -->
+			
+			<!-- Start post-content Area -->
+			
+			<!-- End post-content Area -->
+			
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">

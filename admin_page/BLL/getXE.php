@@ -1,7 +1,7 @@
 <?php
     require 'connect.php';
 
-    $sql = 'SELECT b.X_MA, a.X_TEN, a.X_BIENSO FROM xe AS a, chi_tiet_xe AS b WHERE a.X_MA = b.X_MA AND B.TX_MA = "" ';
+    $sql = "SELECT b.X_MA, a.X_TEN, a.X_BIENSO FROM xe AS a, chi_tiet_xe AS b WHERE a.X_MA = b.X_MA and b.TX_MA= 'null';";
 
     $result = $conn->query($sql);
 

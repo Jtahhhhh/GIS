@@ -51,6 +51,7 @@ else {
     }
 
     // Get the next available ID
+    echo $_POST["QH"]
     $get_max_id_sql = "SELECT MAX(QL_MA) AS maxid FROM quan_ly";
     $get_max_id_result = $conn->query($get_max_id_sql);
     $row = $get_max_id_result->fetch_assoc();

@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 	<head>
 		<!-- Mobile Specific Meta -->
@@ -32,101 +32,64 @@
 		<body>	
 			  <header id="header">
 		  		<div class="header-top">
-				</div>
-			    <div class="container main-menu">
-			    	<div class="row align-items-center justify-content-between d-flex">
-			    		<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>		
-						<nav id="nav-menu-container">
-							<ul class="nav-menu">
-							  <li class="menu-active"><a href="index.html">Home</a></li>
-							  <li><a href="about.html">About</a></li>
-							  <li><a href="service.html">Services</a></li>
-							  <li><a href="gallery.html">Gallery</a></li>
-							  <li class="menu-has-children"><a href="">Blog</a>
-							    <ul>
-							      <li><a href="blog-home.html">Blog Home</a></li>
-							      <li><a href="blog-single.html">Blog Single</a></li>
-							      <li class="menu-has-children"><a href="">Level 2</a>
-							        <ul>
-							          <li><a href="#">Item One</a></li>
-							          <li><a href="#">Item Two</a></li>
-							        </ul>
-							      </li>					              
-							    </ul>
-							  </li>
-							  <li><a href="elements.html">Elements</a></li>							  			          	          
-							  <li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav><!-- #nav-menu-container -->		
-			    	</div>
-			    </div>
-			  </header><!-- #header -->
-			  
-			<!-- start banner Area -->
-			<section class="banner-area relative about-banner" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								Gallery				
-							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="gallery.html"> Gallery</a></p>
-						</div>	
 					</div>
-				</div>
+			   <!-- nav -->
+				<?php
+					include "nav.php";
+          require 'connect.php';
+				?>
+
+			  </header><!-- #header -->
+
+			<!-- start banner Area -->
+			<section class="banner-area relative" id="home">
+				<div class="overlay overlay-bg"></div>	
+				<div class="container">
+					<div class="row fullscreen d-flex align-items-center justify-content-center">
+						<div class="col-lg-5  col-md-6 header-right center">
+							<h4 class="pb-10">Đăng ký tài khoản</h4>
+							<form class="form" id="ff2" name="form2" method="POST" action="form_registration.php">
+							    <div class="from-group">
+										<input class="form-control txt-field" type="text" name="fullname" placeholder="Nhập họ và tên"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập họ và tên'">
+										<input class="form-control txt-field" type="number" name="phone" placeholder="Nhập số điện thoại"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập số điện thoại'">
+										<input class="form-control txt-field" type="email" name="email" placeholder="Nhập địa chỉ email"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập địa chỉ email'">
+										<input class="form-control txt-field" type="text" name="username" placeholder="Nhập username"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập username'">
+										<input class="form-control txt-field" type="password" name="password" placeholder="Nhập mật khấu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập mật khẩu'">
+										<input class="form-control txt-field" type="password" name="repass" placeholder="Nhập lại mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập lại mật khẩu'">
+									</div>
+
+									<div class="form-group">
+										<input required name="thanhpho" class="form form-control form-control-lg" list="browsers" placeholder="- Tỉnh/Thành phố -" >
+										<?php require 'datalist_provine.php' ?>
+										
+									</div>
+
+									<div class="form-group">
+									<input class="form-control txt-field" type="text" name="quanhuyen" placeholder="Nhập quận huyện" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập quận huyện'">
+									</div>
+
+									<!-- <div class="form-group">
+							       	<div class="default-select" id="default-select" name="loaitk">
+												<select>
+													<option value="" disabled selected hidden>Loại tài khoản</option>
+													<option value="1">Khách hàng</option>
+													<option value="2">Tài xế</option>
+												</select>
+											</div>
+							    </div> -->
+
+									
+							    														    
+							    <div class="form-group">
+							      <button type="submit" name="registration" id="registration" class="btn btn-default btn-lg btn-block text-center text-uppercase">Đăng Ký</button>
+							    </div>
+							</form>
+						</div>											
+					</div>
+				</div>					
 			</section>
 			<!-- End banner Area -->	
 
-			<!-- Start image-gallery Area -->
-			<section class="image-gallery-area section-gap">
-				<div class="container">
-					<div class="row section-title">
-						<h1>Image Gallery that we like to share</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>					
-					<div class="row">
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
-							<a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>
-							<a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
-							<a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>							
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
-							<a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>
-							<a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
-							<a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>													
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
-							<a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
-							<a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
-							<a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
-						</div>				
-					</div>
-				</div>	
-			</section>
-			<!-- End image-gallery Area -->			
-		
-			<!-- Start home-calltoaction Area -->
-			<section class="home-calltoaction-area relative">
-				<div class="container">
-					<div class="overlay overlay-bg"></div>
-					<div class="row align-items-center section-gap">
-						<div class="col-lg-8">
-							<h1>Experience Great Support</h1>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-							</p>
-						</div>
-						<div class="col-lg-4 btn-left">
-							<a href="#" class="primary-btn">Reach Our Support Team</a>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End home-calltoaction Area -->				    																	
 			
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
@@ -217,6 +180,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
  			<script src="js/jquery-ui.js"></script>								
 			<script src="js/jquery.nice-select.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>		
+			<script src="js/main.js"></script>	
 		</body>
 	</html>

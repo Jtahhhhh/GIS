@@ -1,6 +1,22 @@
+<?php
+if(isset($_POST["TX_MA"]) && isset($_POST["TX_Ten"]) && isset($_POST["TX_SDT"]) && isset($_POST["TX_email"]) && isset($_POST["DDG_SAO"])) {
+    $ma = $_POST["TX_MA"];
+    $ten = $_POST["TX_Ten"];
+    $sdt = $_POST["TX_SDT"];
+    $email = $_POST["TX_email"];
+    echo '<script language="javascript">';
+    echo "console.log('success');"; // Corrected spelling of 'success'
+    echo '</script>';
+} else {
+    // Handle when not all required fields are received via POST
+    echo '<script language="javascript">';
+    echo "console.log('Không có dữ liệu POST được gửi đến!');"; // Log an error message
+    echo '</script>';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -30,83 +46,83 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">TaXi TaXi </div>
-            </a>
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">TaXi TaXi </div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+    <a class="nav-link" href="index.html">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+</li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+<!-- Divider -->
+<hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
+<!-- Heading -->
+<div class="sidebar-heading">
+    Interface
+</div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>EMP</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Staff:</h6>
-                        <a class="collapse-item" href="emp.html">EMP manager</a>
-                        <a class="collapse-item" href="driver.html">Driver manager</a>
-                        <a class="collapse-item" href="car.html">Car</a>
-                        <a class="collapse-item" href="price.html">Price</a>
-                    </div>
-                </div>
-            </li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+        aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>EMP</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Staff:</h6>
+            <a class="collapse-item" href="emp.html">EMP manager</a>
+            <a class="collapse-item" href="driver.html">Driver manager</a>
+            <a class="collapse-item" href="car.html">Car</a>
+            <a class="collapse-item" href="price.html">Price</a>
+        </div>
+    </div>
+</li>
+
+<li class="nav-item active">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Business manager</span>
+    </a>
+    <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Business manager:</h6>
+            <a class="collapse-item" href="customer.html">Customer</a>
+            <a class="collapse-item" href="trip.html">Trip</a>
             
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Business manager</span>
-                </a>
-                <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Business manager:</h6>
-                        <a class="collapse-item" href="customer.html">Customer</a>
-                        <a class="collapse-item" href="trip.html">Trip</a>
-                        
-                    </div>
-                </div>
-            </li>
+        </div>
+    </div>
+</li>
 
-            <!-- Divider -->
-            <!-- <hr class="sidebar-divider d-none d-md-block">
+<!-- Divider -->
+<!-- <hr class="sidebar-divider d-none d-md-block">
 
-            Sidebar Toggler (Sidebar) 
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+Sidebar Toggler (Sidebar) 
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
-             Sidebar Message 
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div> -->
+ Sidebar Message 
+<div class="sidebar-card d-none d-lg-flex">
+    <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+</div> -->
 
-        </ul>
+</ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -333,31 +349,82 @@
           <div class="section-body">
             <div class="row">
               <div class="col-lg-3"></div>
+
+              <?php
+                require 'BLL/connect.php';
+                $matx = $_POST["TX_MA"];
+                $sql_qh = "SELECT *
+                                from quan_huyen qh
+                                join tai_xe tx on tx.QH_MA=qh.QH_MA
+                                where tx.TX_MA = '{$matx}'";
+                $rs = $conn->query($sql_qh);
+                if($rs->num_rows > 0){
+                    $row = $rs->fetch_assoc();
+                    $mqh = $row["QH_MA"];
+                    $qh = $row["QH_TEN"];
+                    $ten = $row["TX_TEN"];
+                }  
+              ?>
+
               <div class="col-6 col-md-6 col-lg-6">
                 <div class="card">
-                    <form method="POST" action="BLL/addEMP.php" enctype="multipart/form-data">  
-                        <input type="hidden" name="maxe" value="">
-                        <div class="card-header">
-                            <h4>Thêm Giá</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Cận Dưới</label>
-                                <input type="text" class="form-control" id="" name="cantren">
-                            </div>
-                            <div class="form-group">
-                                <label>Cận Trên</label>
-                                <input type="text" class="form-control" id="" name="canduoi">
-                            </div>
-                            <div class="form-group">
-                                <label>Giá</label>
-                                <input type="text" class="form-control" id="" name="gia">
-                            </div>
-                        </div>
-                        <div class="card-footer text-right">
-                            <button id="addPrice" class="btn btn-primary" class="mt-2">Thêm Giá</button>
-                        </div>
-                    </form>                    
+                <form method="POST" action="update_edit_driver.php" enctype="multipart/form-data">
+                  <input type="hidden" name="matx" value="<?php echo $ma; ?>">
+                    <div class="card-header">
+                      <h4>Chỉnh sửa </h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label>Quận Huyện</label>
+                        <select name="qh" id="qh" class="form-control">
+                            <option value="<?php echo $mqh; ?>" selected hidden><?php echo $qh; ?></option>
+                             <?php
+                                // require 'BLL/connect.php';
+                                $sql = "SELECT * FROM quan_huyen";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                $result = $conn->query($sql);
+                                $result_all = $result -> fetch_all(MYSQLI_ASSOC);
+                                foreach ($result_all as $row) {
+                                    echo "<option value=" .$row["QH_MA"]. ">".$row["QH_TEN"]. "</option>";
+                                }                          
+                                } else {
+                                echo "<option value=''>Không có dữ liệu</option>";
+                                }
+                            ?>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Tên Tài Xế</label>
+                        <input type="text" class="form-control" id="ten" name="ten" value="<?php echo $ten; ?>">
+                      </div>
+                      <div class="form-group">
+                        <label>Số Điện Thoại</label>
+                        <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $sdt; ?>">
+                      </div>
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+                      </div>
+                      <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" id="user" name="user">
+                      </div>
+                      <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="pass" name="pass">
+                      </div>
+                    </div>
+                    <div class="card-footer text-right">
+                     <button id="delEMP" name="delEMP" class="btn btn-primary" class="mt-2" style="background-color: red;">Xóa Thông tin</button>
+                      <button id="changeEMP" name="changeEMP" class="btn btn-primary" class="mt-2">Sửa Thông tin</button>
+                    </div>
+                    </div>
+                    
+                    </div>
+                    
+                    
+                  </form>
                 </div>
               </div>
               <div class="col-lg-3"></div>
@@ -426,7 +493,8 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script src="DAL/getQH.js"></script>
-    <!-- <script src="DAL/addEMP.js"></script> -->
+    <sript src="DAL/driver.js">
+    <sript src="DAL/changeorDelete.js">
 
 </body>
 

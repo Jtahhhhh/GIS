@@ -1,6 +1,22 @@
+<?php
+if(isset($_POST["idgia"]) && isset($_POST["giatren"]) && isset($_POST["giaduoi"]) && isset($_POST["dongia"]) && !empty($_POST["idgia"]) && !empty($_POST["giatren"]) && !empty($_POST["giaduoi"]) && !empty($_POST["dongia"])) {
+    $ma = $_POST["idgia"];
+    $giatren = $_POST["giatren"];
+    $giaduoi = $_POST["giaduoi"];
+    $dongia = $_POST["dongia"];
+    echo '<script language="javascript">';
+    echo "console.log('$ten')";
+    echo '</script>';
+} else {
+    // Handle when not all required fields are received via POST
+    echo '<script language="javascript">';
+    echo "console.log('Không có dữ liệu POST được gửi đến!')";
+    echo '</script>';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -9,7 +25,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - 404</title>
+    <title>SB Admin 2 - Blank</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,121 +46,83 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">TaXi TaXi </div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+    <a class="nav-link" href="index.html">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+</li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+<!-- Divider -->
+<hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
+<!-- Heading -->
+<div class="sidebar-heading">
+    Interface
+</div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.php">Buttons</a>
-                        <a class="collapse-item" href="cards.php">Cards</a>
-                    </div>
-                </div>
-            </li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+        aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>EMP</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Staff:</h6>
+            <a class="collapse-item" href="emp.html">EMP manager</a>
+            <a class="collapse-item" href="driver.html">Driver manager</a>
+            <a class="collapse-item" href="car.html">Car</a>
+            <a class="collapse-item" href="price.html">Price</a>
+        </div>
+    </div>
+</li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.php">Colors</a>
-                        <a class="collapse-item" href="utilities-border.php">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.php">Animations</a>
-                        <a class="collapse-item" href="utilities-other.php">Other</a>
-                    </div>
-                </div>
-            </li>
+<li class="nav-item active">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Business manager</span>
+    </a>
+    <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Business manager:</h6>
+            <a class="collapse-item" href="customer.html">Customer</a>
+            <a class="collapse-item" href="trip.html">Trip</a>
+            
+        </div>
+    </div>
+</li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+<!-- Divider -->
+<!-- <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+Sidebar Toggler (Sidebar) 
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.php">Login</a>
-                        <a class="collapse-item" href="register.php">Register</a>
-                        <a class="collapse-item" href="forgot-password.php">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item active" href="404.php">404 Page</a>
-                        <a class="collapse-item" href="blank.php">Blank Page</a>
-                    </div>
-                </div>
-            </li>
+ Sidebar Message 
+<div class="sidebar-card d-none d-lg-flex">
+    <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+</div> -->
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+</ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -360,13 +338,80 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- 404 Error Text -->
-                    <div class="text-center">
-                        <div class="error mx-auto" data-text="404">404</div>
-                        <p class="lead text-gray-800 mb-5">Page Not Found</p>
-                        <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-                        <a href="index.php">&larr; Back to Dashboard</a>
+                    <!-- Page Heading -->
+                    <div class="loader"></div>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-lg-3"></div>
+
+
+                <?php
+                    require 'BLL/connect.php';
+                    $idgia = $_POST["idgia"];
+                    $sql = "select * from chi_tiet_bang_gia where CTG_MA = '{$idgia}';";
+                    $rs = $conn->query($sql);
+                    if($rs->num_rows > 0){
+                        $row = $rs->fetch_assoc();
+                        $giatren = $row["CTG_GIACANTREN"];
+                        $giaduoi = $row["CTG_GIACANDUOI"]; 
+                        $dongia =  $row["CTG_DONGIA"] ;
+                    }
+                ?>
+
+              <div class="col-6 col-md-6 col-lg-6">
+                <div class="card">
+                <form method="POST" action="update_edit_price.php" enctype="multipart/form-data">
+                    <input type="hidden" name="idgia" value="<?php  echo "$idgia";?>"/>
+                    <div class="card-header">
+                      <h4>Chỉnh sửa Thông tin xe</h4>
                     </div>
+                    <div class="card-body">
+                      
+                      <div class="form-group">
+                        <label>Cận dưới</label>
+                        <input type="number" class="form-control" id="giaduoi" name="giaduoi" value="<?php echo $giaduoi; ?>">
+                      </div>
+                      
+                      <div class="form-group">
+                        <label>Cận trên</label>
+                        <input type="number" class="form-control" id="giatren" name="giatren" value="<?php echo $giatren; ?>">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Đơn giá/ 1Km</label>
+                        <input type="number" class="form-control" id="dongia" name="dongia" value="<?php echo $dongia; ?>">
+                      </div>
+                      <!-- <div class="form-group">
+                        <label>Số Ghế</label>
+                        <input type="text" class="form-control" id="thongso" name="mota" value="<?php echo $th; ?>">
+                      </div> -->
+                    </div>
+                    <div class="card-footer text-right">
+                     <button type="submit" id="deletePrice" name="deletePrice" class="btn btn-primary" class="mt-2" style="background-color: red;">Xóa Thông tin</button>  
+                     <button type="submit" id="updatePrice" name="updatePrice" class="btn btn-primary" type="submit" class="mt-2">Sửa Thông tin</button>
+                    </div>
+                    </div>
+                    
+                    </div>
+                    
+                    
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-3"></div>
+            </div>
+          </div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -409,7 +454,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
@@ -424,6 +469,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="DAL/getQH.js"></script>
+    <sript src="DAL/priceTicket.js">
+    <sript src="DAL/changeorDelete.js">
 
 </body>
 
