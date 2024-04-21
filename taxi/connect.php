@@ -16,6 +16,6 @@
 ?>
 <?php
 
-
+session_start();
 ?>
 

@@ -1,1 +1,7 @@
-node_modules
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore the public directory,scss and vendor
+/dist/
+/scss/
+/vendor/

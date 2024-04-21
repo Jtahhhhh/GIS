@@ -1,447 +1,581 @@
-	<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
-		<!-- Author Meta -->
-		<meta name="author" content="colorlib">
-		<!-- Meta Description -->
-		<meta name="description" content="">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>Taxi</title>
+<?php
+$activate = "index";
+@include('header.php');
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/nice-select.css">							
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/jquery-ui.css">			
-			<link rel="stylesheet" href="css/main.css">
-		</head>
-		<body>	
-			  <header id="header">
-		  		<div class="header-top">
-					</div>
-			   <!-- nav -->
-				<?php
-					include "nav.php"
-				?>
+// @include('chon_diemdi.php');
+// @include('luudiemdi.php');
+// @include('chon_diemden.php');
+// @include('luudiemden');
+?>
 
-			  </header><!-- #header -->
+<?php
+if (isset($_SESSION['kh_ma'])) {
+  $form_action = "chon_taixe.php";
+} else {
+  $form_action = "login.php?rl=1";
+}
+?>
+<div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');"
+  data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container" id="datxe">
+    <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
+      <div class="col-lg-8 ftco-animate">
+        <div class="text w-100 text-center mb-md-5 pb-md-5">
+          <h1 class="mb-4">THUÊ XE NHANH VÀ DỄ DÀNG</h1>
+          <p style="font-size: 18px;">Truy cập TAXI ngay hôm nay để đặt xe một cách TIỆN LỢI và NHANH CHÓNG! Chủ động
+            thời gian di chuyển với tính năng "Đặt trước" và ước tính chi phí chuyến đi ngay trên Web.</p>
+          <a href="https://vimeo.com/45830194"
+            class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
+            <div class="icon d-flex align-items-center justify-content-center">
+              <span class="ion-ios-play"></span>
+            </div>
+            <div class="heading-title ml-5">
+              <span>Easy steps for renting a car</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-			<!-- start banner Area -->
-			<section class="banner-area relative" id="home">
-				<div class="overlay overlay-bg"></div>	
-				<div class="container">
-					<div class="row fullscreen d-flex align-items-center justify-content-between">
-						<div class="banner-content col-lg-6 col-md-6 ">
-							<h6 class="text-white ">Need a ride? just call</h6>
-							<h1 class="text-uppercase">
-								911 999 911				
-							</h1>
-							<p class="pt-10 pb-10 text-white">
-								Whether you enjoy city breaks or extended holidays in the sun, you can always improve your travel experiences by staying in a small.
-							</p>
-							<a href="gallery.php" class="primary-btn text-uppercase">Call for taxi</a>
-						</div>
-						<div class="col-lg-4  col-md-6 header-right">
-							<h4 class="pb-30">Book Your Texi Online!</h4>
-							<form class="form">
-							    <div class="from-group">
-							    	<input class="form-control txt-field" type="text" name="name" placeholder="Your name"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your name'">
-							    	<input class="form-control txt-field" type="email" name="email" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'">
-							    	<input class="form-control txt-field" type="tel" name="phone" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'">
-							    </div>								
-							    <div class="form-group">
-							       	<div class="default-select" id="default-select">
-										<select>
-											<option value="" disabled selected hidden>From Destination</option>
-											<option value="1">Destination One</option>
-											<option value="2">Destination Two</option>
-											<option value="3">Destination Three</option>
-										</select>
-									</div>
-							    </div>
-							    <div class="form-group">
-							       	<div class="default-select" id="default-select2">
-										<select>
-											<option value="" disabled selected hidden>To Destination</option>
-											<option value="1">Destination One</option>
-											<option value="2">Destination Two</option>
-											<option value="3">Destination Three</option>
-										</select>
-									</div>
-							    </div>							    
-							    <div class="form-group">
-									<div class="input-group dates-wrap">                                              
-										<input id="datepicker2" class="dates form-control"  placeholder="Date & time" type="text">                        
-										<div class="input-group-prepend">
-											<span  class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-										</div>											
-									</div>
-							    </div>							    
-							    <div class="form-group">
+<section style="padding: 0 !important"  class="ftco-section ftco-no-pt bg-light">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-12 featured-top">
+        <div class="row no-gutters">
+          <div class="col-md-12 col-lg-5 d-flex align-items-center">
+            <script>
+              var latitude = ""
+              var longitude = ""
+              function getLocation() {
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                  document.getElementById("location").innerHTML = "Trình duyệt của bạn không hỗ trợ định vị.";
+                }
+              }
+              function showPosition(position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
 
-							            <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Make reservation</button>
+                const apiUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
 
-							    </div>
-							</form>
-						</div>											
-					</div>
-				</div>					
-			</section>
-			<!-- End banner Area -->	
+                fetch(apiUrl)
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data)
+                    showCurrentLocation(data)
+                  })
+                  .catch(error => {
+                    console.error('Lỗi khi gửi yêu cầu API:', error);
+                  });
 
-			<!-- Start home-about Area -->
-			<section class="home-about-area section-gap">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-6 about-left">
-							<img class="img-fluid" src="img/about-img.jpg" alt="">
-						</div>
-						<div class="col-lg-6 about-right">
-							<h1>Globally Connected
-							by Large Network</h1>
-							<h4>We are here to listen from you deliver exellence</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.								
-							</p>
-							<a class="text-uppercase primary-btn" href="#">Get Details</a>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End home-about Area -->
-			
-			<!-- Start services Area -->
-			<section class="services-area pb-120">
-				<div class="container">
-					<div class="row section-title">
-						<h1>What Services we offer to our clients</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>
-					<div class="row">
-						<div class="col-lg-4 single-service">
-							<span class="lnr lnr-car"></span>
-							<a href="#"><h4>Taxi Service</h4></a>
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>
-						</div>
-						<div class="col-lg-4 single-service">
-							<span class="lnr lnr-briefcase"></span>
-							<a href="#"><h4>Office Pick-ups</h4></a>
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>
-						</div>
-						<div class="col-lg-4 single-service">
-							<span class="lnr lnr-bus"></span>
-							<a href="#"><h4>Event Transportation</h4></a>
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>
-						</div>												
-					</div>	
-				</div>	
-			</section>
-			<!-- End services Area -->
-			
-			<!-- Start image-gallery Area -->
-			<section class="image-gallery-area section-gap">
-				<div class="container">
-					<div class="row section-title">
-						<h1>Image Gallery that we like to share</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>					
-					<div class="row">
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
-							<a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
-							<a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>						
-						</div>	
-						<div class="col-lg-4 single-gallery">
-							<a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
-							<a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
-						</div>				
-					</div>
-				</div>	
-			</section>
-			<!-- End image-gallery Area -->
-			
-			<!-- Start reviews Area -->
-			<section class="reviews-area section-gap">
-				<div class="container">
-					<div class="row section-title">
-						<h1>Client’s Reviews</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>					
-					<div class="row">
-						<div class="col-lg-4 col-md-6">
-							<div class="single-review">
-								<h4>Cody Hines</h4>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-								</div>
-							</div>
-						</div>	
-						<div class="col-lg-4 col-md-6">
-							<div class="single-review">
-								<h4>Chad Herrera</h4>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-								</div>
-							</div>
-						</div>	
-						<div class="col-lg-4 col-md-6">
-							<div class="single-review">
-								<h4>Andre Gonzalez</h4>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-								</div>
-							</div>
-						</div>	
-						<div class="col-lg-4 col-md-6">
-							<div class="single-review">
-								<h4>Jon Banks</h4>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-								</div>
-							</div>
-						</div>	
-						<div class="col-lg-4 col-md-6">
-							<div class="single-review">
-								<h4>Landon Houston</h4>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-								</div>
-							</div>
-						</div>	
-						<div class="col-lg-4 col-md-6">
-							<div class="single-review">
-								<h4>Nelle Wade</h4>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-								</div>
-							</div>
-						</div>																															
-					</div>
-				</div>	
-			</section>
-			<!-- End reviews Area -->
-							
-			<!-- Start home-calltoaction Area -->
-			<section class="home-calltoaction-area relative">
-				<div class="container">
-					<div class="overlay overlay-bg"></div>
-					<div class="row align-items-center section-gap">
-						<div class="col-lg-8">
-							<h1>Experience Great Support</h1>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-							</p>
-						</div>
-						<div class="col-lg-4 btn-left">
-							<a href="#" class="primary-btn">Reach Our Support Team</a>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End home-calltoaction Area -->
-			
-			<!-- Start latest-blog Area -->
-			<section class="latest-blog-area section-gap">
-				<div class="container">
-					<div class="row section-title">
-						<h1>Latest News from our Blog</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>						
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="single-latest-blog">
-								<div class="thumb">
-									<img class="img-fluid" src="img/b1.jpg" alt="">
-								</div>
-								<ul class="tags">
-									<li><a href="#">Travel</a></li>
-									<li><a href="#">Life Style</a></li>
-								</ul>
-								<a href="#">
-									<h4>Portable latest Fashion for young women</h4>
-								</a>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
-								</p>
-								<p class="date">31st January, 2018</p>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="single-latest-blog">
-								<div class="thumb">
-									<img class="img-fluid" src="img/b2.jpg" alt="">
-								</div>
-								<ul class="tags">
-									<li><a href="#">Travel</a></li>
-									<li><a href="#">Life Style</a></li>
-								</ul>
-								<a href="#">
-									<h4>Portable latest Fashion for young women</h4>
-								</a>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
-								</p>
-								<p class="date">31st January, 2018</p>
-							</div>
-						</div>						
-					</div>
-				</div>	
-			</section>
-			<!-- End latest-blog Area -->
-			
-			<!-- start footer Area -->		
-			<footer class="footer-area section-gap">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-2 col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Quick links</h6>
-								<ul>
-									<li><a href="#">Jobs</a></li>
-									<li><a href="#">Brand Assets</a></li>
-									<li><a href="#">Investor Relations</a></li>
-									<li><a href="#">Terms of Service</a></li>
-								</ul>								
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Features</h6>
-								<ul>
-									<li><a href="#">Jobs</a></li>
-									<li><a href="#">Brand Assets</a></li>
-									<li><a href="#">Investor Relations</a></li>
-									<li><a href="#">Terms of Service</a></li>
-								</ul>								
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Resources</h6>
-								<ul>
-									<li><a href="#">Guides</a></li>
-									<li><a href="#">Research</a></li>
-									<li><a href="#">Experts</a></li>
-									<li><a href="#">Agencies</a></li>
-								</ul>								
-							</div>
-						</div>												
-						<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-							<div class="single-footer-widget">
-								<h6>Follow Us</h6>
-								<p>Let us be social</p>
-								<div class="footer-social d-flex align-items-center">
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-									<a href="#"><i class="fa fa-dribbble"></i></a>
-									<a href="#"><i class="fa fa-behance"></i></a>
-								</div>
-							</div>
-						</div>							
-						<div class="col-lg-4  col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Newsletter</h6>
-								<p>Stay update with our latest</p>
-								<div class="" id="mc_embed_signup">
-									<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-										<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-			                            	<button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-			                            	<div style="position: absolute; left: -5000px;">
-												<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-											</div>
+                function showCurrentLocation(data) {
+                  $("#crLocation").val(data.name)
+                  $("#diemdix").val(latitude)
+                  $("#diemdiy").val(longitude)
+                  $("#tendiemdi").val(data.name)
+                  showMapIndex()
+                }
+              }
 
-										<div class="info"></div>
-									</form>
-								</div>
-							</div>
-						</div>	
-						<p class="mt-80 mx-auto footer-text col-lg-12">
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>											
-					</div>
-				</div>
-				<img class="footer-bottom" src="img/footer-bottom.png" alt="">
-			</footer>	
-			<!-- End footer Area -->	
+              getLocation()
+            </script>
+            <form id="myForm" action="<?php echo $form_action ?>" class="request-form ftco-animate bg-primary w-100"
+              method="post">
+              <h2>Chuyến đi của bạn</h2>
+              <?php
+                if (isset($_POST['tx_ma'])) {
+                  $matx = $_POST['tx_ma'];
+                  echo '<input type="hidden" name="matx" value="'.$matx.'"/>';
+                } else {
+                  $matx = "";
+                }
+              ?>
+              <!-- CHƯA LẤY ĐƯỢC MÃ TÀI XẾ QUA XỬ LÍ ĐẶT XE -->
+              <div class="form-group">
+                <input name="TX_MA" type="hidden" class="form-control" value="" >
+              </div>
+              <div class="form-group">
+                <label for="" class="label">Vị trí của bạn</label><br>
+                <input class="form-control" style="font-size: 14px;" type="text" name="diemdi" id="crLocation" readonly value="">
+                <input type="hidden" name="diemdix" id="diemdix">
+                <input type="hidden" name="diemdiy" id="diemdiy">
+                <input type="hidden" name="tendiemdi" id="tendiemdi">
+              </div>
 
-			<script src="js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="js/vendor/bootstrap.min.js"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  			<script src="js/easing.min.js"></script>			
-			<script src="js/hoverIntent.js"></script>
-			<script src="js/superfish.min.js"></script>	
-			<script src="js/jquery.ajaxchimp.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>	
- 			<script src="js/jquery-ui.js"></script>								
-			<script src="js/jquery.nice-select.min.js"></script>							
-			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
-		</body>
-	</html>
+              <div class="form-group">
+                <?php
+                  if (isset($_GET['locateden'])){
+                    $location = $_GET['locateden'];
+                    $latden = $_GET['latden'];
+                    $lngden = $_GET['lngden'];
+                    $distance = $_GET['kcach'];
+                  } else {
+                    $location = null;
+                    $latden = '';
+                    $lngden = '';
+                    $distance = 0;
+                  }
+                ?>
+                <label for="" class="label">Vị trí muốn đến</label>
+                <div class="d-flex flex-row justify-content-center align-items-center">
+                  <input type="hidden" name="diemdenx" id="diemdenx" value="<?php echo $latden ?>">
+                  <input type="hidden" name="diemdeny" id="diemdeny" value="<?php echo $lngden ?>">
+                  <input type="hidden" name="kcach" id="kcach" value="<?php echo $distance ?>">
+                  <input type="hidden" name="tendiemden" id="tendiemden" value="<?php echo $location ?>">
+
+                  <input name="diemden" id="diemden" value="<?php echo $location ?>" style="font-size: 14px;" type="text" readonly class="form-control"
+                    placeholder="Vui lòng chọn điểm đến" required>
+                  <a href="chon_diemden.php" style="margin-left: 10px; font-size: 20px;">
+                    <i style="color: white;"class="fas fa-map-marker-alt"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="submit" name="datxe" value="Thuê xe ngay" class="btn btn-secondary py-3 px-4">
+              </div>
+            </form>
+          </div>
+          <?php
+
+            if (!isset($_POST['tx_ma'])) {
+          ?>
+
+            <div class="col-lg-6 col-md-12 d-flex align-items-center ml-4">
+              <div class="services-wrap rounded w-100">
+                <h3 class="heading-section mb-4">Cách để thuê một chiếc taxi tốt</h3>
+                <div class="row d-flex mb-4">
+                  <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                    <div class="services w-100 text-center">
+                      <div class="icon d-flex align-items-center justify-content-center"><span
+                          class="flaticon-route"></span></div>
+                      <div class="text w-100">
+                        <h3 class="heading mb-2">Chọn địa điểm đón của bạn</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                    <div class="services w-100 text-center">
+                      <div class="icon d-flex align-items-center justify-content-center"><span
+                          class="flaticon-handshake"></span></div>
+                      <div class="text w-100">
+                        <h3 class="heading mb-2">Chọn giao dịch tốt nhất</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                    <div class="services w-100 text-center">
+                      <div class="icon d-flex align-items-center justify-content-center"><span
+                          class="flaticon-rent"></span></div>
+                      <div class="text w-100">
+                        <h3 class="heading mb-2">Đặt thuê xe bạn chọn</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <button onclick="getLocation()" class="btn btn-primary py-3 px-4">Đặt một chiếc xe hoàn hảo</button> -->
+              </div>
+            </div>
+
+            <?php
+          } else {
+            $matx = $_POST['tx_ma'];  
+            $sql = "SELECT * FROM taixe tx
+                          join phutrach pt on pt.TX_MA = tx.TX_MA
+                          join xe x on x.X_MA = pt.X_MA
+                          where tx.TX_MA = $matx and (pt.TD_DATE, tx.TX_MA) IN (
+                            select max(TD_DATE), TX_MA from phutrach GROUP BY TX_MA
+                          )";
+            $rs = querySqlwithResult($conn, $sql);
+            $tt = $rs->fetch_assoc();
+            if ($tt['TX_HINHANH'] == NULL)
+              $anhtx = "default.png";
+            else
+              $anhtx = $tt['TX_HINHANH'];
+            ?>
+            <div class="col-lg-6 col-md-12 d-flex align-items-center ml-4">
+              <div class="services-wrap rounded-right w-100">
+                <h3 class="heading-section mb-4">Thông tin tài xế đang chọn</h3>
+                <div class="row d-flex mb-4">
+                  <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+                    <div style="width: 8rem; height: 8rem">
+                      <img src="images/taixe/<?php echo $anhtx; ?>" alt="" class="fit-image">
+                    </div>
+                    <span class="mt-4">
+                      <?php echo $tt['TX_TEN'] ?>
+                    </span>
+                  </div>
+                  <div class="col-3 d-flex flex-column justify-content-center align-items-center">
+                    <span>
+                      0 <i style="color: #f7d219;" class="fas fa-star"></i>
+                    </span>
+                    <span>
+                      Số chuyến: 23
+                    </span>
+                  </div>
+                  <div class="col-5 d-flex flex-column justify-content-center align-items-center">
+                    <div style="width: 8rem; height: 8rem">
+                      <img src="images/xe/<?php echo $tt['X_HINHANH']; ?>" alt="" class="fit-image"
+                        style="border-radius: 100% !important;">
+                    </div>
+                    <span class="mt-4">
+                      <?php echo $tt['X_MOTA'] ?>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php
+          }
+
+          ?>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pt bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+        <span class="subheading">Những gì chúng tôi cung cấp</span>
+        <h2 class="mb-2">XE GẦN BẠN</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-6">
+            <?php
+              if (isset($_GET['locateden'])){
+                $location = $_GET['locateden'];
+                $latden = $_GET['latden'];
+                $lngden = $_GET['lngden'];
+                $distance = $_GET['kcach'];
+              } else {
+                $location = null;
+                $latden = '1';
+                $lngden = '1';
+                $distance = 0;
+              }
+
+            
+            $sql = "select x.*, tx.tx_ten, x.x_ten, x.x_bienso, ddg.ddg_sao
+                      from chi_tiet_xe ct
+                      inner join tai_xe tx on tx.TX_MA=ct.TX_MA
+                      inner join xe x on x.X_MA=ct.X_MA
+                      inner join trang_thai tt on tt.TX_MA=tx.TX_MA
+                      inner join diem_danh_gia ddg on ddg.TX_MA=tx.TX_MA
+                      where tt.TT_TINHTRANG=0
+                      LIMIT 4;";
+            $rs = $conn->query($sql);
+            $data = array();
+            while ($x = $rs->fetch_assoc()) {
+              $data[] = $x;
+              ?>
+              <div class="container p-3 py-3 mt-2"
+                style="border-radius: 15px; background-color:white; box-shadow: 5px 5px 5px rgba(0,0,0,0.3);">
+                <div class="card-choose">
+                  <div style="width: 5rem; height: 5rem;">
+                    <img src="images/xe/xe1.jpg" class="fit-image" alt="">
+                  </div>
+                  <div class="card-choose-content">
+                    <span>
+                      Tài xế: <span style="color: green; font-size: 18px;">
+                        <?php echo $x['tx_ten'] ?>
+                      </span>
+                    </span>
+                    <?php echo "Loại xe: " . $x['x_ten'] . " Biến số: " . $x["x_bienso"]?>
+                    <span>
+                      Đánh giá: <?php echo $x['ddg_sao'] ?> <i style="color: #f7d219;" class="fas fa-star"></i>
+                    </span>
+                  </div>
+                  <form action="#datxe" method="post">
+                    <button type="submit" class="btn btn-success">Đặt ngay</button>
+                  </form>
+                </div>
+              </div>
+              <?php
+            }
+            $jsonData = json_encode($data);
+            ?>
+
+          </div>
+          <div class="col-6">
+            <div id="map"
+              class="mt-4 map leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+              tabindex="0">
+              <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"></div>
+            </div>
+            <div class="leaflet-control-container">
+              <div class="leaflet-top leaflet-right"></div>
+              <div class="leaflet-bottom leaflet-left"></div>
+              <div class="leaflet-bottom leaflet-right"></div>
+            </div>
+          </div>
+
+          <script>
+            var jsonData = <?php echo $jsonData; ?>
+          </script>
+          <script src="js/map_index.js"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftco-about">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
+        style="background-image: url(images/about.jpg);">
+      </div>
+      <div class="col-md-6 wrap-about ftco-animate">
+        <div class="heading-section heading-section-white pl-md-5">
+          <span class="subheading">Về chúng tôi</span>
+          <h2 class="mb-4">Chào mừng đến với TAXI</h2>
+
+          <p>Với tiềm lực và định hướng mới của TAXI, chúng tôi đang đẩy mạnh kinh doanh, phát triển thêm nhiều phương
+            thức phục vụ khách hàng..... và đặc biệt với sự hồi sinh của ngành du lịch lữ hành...</p>
+          <p>TAXI đã và đang đẩy mạnh voucher với giá ưu đãi.....voucher tiện dụng nhiều mệnh giá hấp dẫn.</p>
+          <p>TAXI luôn phát triển đó là nhờ được sự ủng hộ của khách hàng. Với Phương châm lấy uy tín làm kim chỉ nam,
+            phục vụ an toàn, tiết kiệm nhanh chóng, với tổng đài taxi 24/7 gọi xe là có ngay trong 5 phút</p>
+          <p><a href="#" class="btn btn-primary py-3 px-4">Tìm kiếm xe</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 text-center heading-section ftco-animate">
+        <span class="subheading">DỊCH VỤ</span>
+        <h2 class="mb-3">Dịch vụ nổi bật của chúng tôi</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="services services-2 w-100 text-center">
+          <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car"></span></div>
+          <div class="text w-100">
+            <h3 class="heading mb-2">Đưa đón sân bay</h3>
+            <p>Bạn đang tìm kiếm thông tin về một hãng xe Taxi giá rẻ với mong muốn được sử dụng dịch vụ taxi có chất
+              lượng vàng cho dịch vụ? Hãy để chúng tôi giới thiệu ngay đến bạn hãng TAXI uy tín, luôn được khách hàng
+              tin tưởng sử dụng nhiều năm qua.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="services services-2 w-100 text-center">
+          <div class="icon d-flex align-items-center justify-content-center"><span
+              class="flaticon-transportation"></span></div>
+          <div class="text w-100">
+            <h3 class="heading mb-2">Dịch vụ Taxi</h3>
+            <p>Cuộc sống hiện tại yêu cầu những lúc chúng ta phải sử dụng đến taxi để phục vụ nhu cầu đi lại, Bạn có thể
+              lựa chọn hình thức phương tiện như xe khách, xe buyt, nhưng với những khung giờ đón trả khách cố định,
+              phải đón trả khách tại...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftco-intro" style="background-image: url(images/bg_3.jpg);">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-6 heading-section heading-section-white ftco-animate">
+        <h2 class="mb-3">Bạn có muốn kiếm tiền với chúng tôi không? Vì vậy đừng đến muộn.</h2>
+        <a href="#" class="btn btn-primary btn-lg">Trở thành tài xế</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section testimony-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 text-center heading-section ftco-animate">
+        <span class="subheading">Lời chứng thực</span>
+        <h2 class="mb-3">Khách hàng vui vẻ</h2>
+      </div>
+    </div>
+    <div class="row ftco-animate">
+      <div class="col-md-12">
+        <div class="carousel-testimony owl-carousel ftco-owl">
+          <div class="item">
+            <div class="testimony-wrap rounded text-center py-4 pb-5">
+              <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
+              </div>
+              <div class="text pt-4">
+                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                  there live the blind texts.</p>
+                <p class="name">Roger Scott</p>
+                <span class="position">Marketing Manager</span>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap rounded text-center py-4 pb-5">
+              <div class="user-img mb-2" style="background-image: url(images/person_2.jpg)">
+              </div>
+              <div class="text pt-4">
+                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                  there live the blind texts.</p>
+                <p class="name">Roger Scott</p>
+                <span class="position">Interface Designer</span>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap rounded text-center py-4 pb-5">
+              <div class="user-img mb-2" style="background-image: url(images/person_3.jpg)">
+              </div>
+              <div class="text pt-4">
+                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                  there live the blind texts.</p>
+                <p class="name">Roger Scott</p>
+                <span class="position">UI Designer</span>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap rounded text-center py-4 pb-5">
+              <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
+              </div>
+              <div class="text pt-4">
+                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                  there live the blind texts.</p>
+                <p class="name">Roger Scott</p>
+                <span class="position">Web Developer</span>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap rounded text-center py-4 pb-5">
+              <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
+              </div>
+              <div class="text pt-4">
+                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                  there live the blind texts.</p>
+                <p class="name">Roger Scott</p>
+                <span class="position">System Analyst</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 heading-section text-center ftco-animate">
+        <span class="subheading">Tin tức</span>
+        <h2>Tin tức gần đây</h2>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry justify-content-end">
+          <a href="blog-single.php" class="block-20" style="background-image: url('images/image_1.jpg');">
+          </a>
+          <div class="text pt-4">
+            <div class="meta mb-3">
+              <div><a href="#">Oct. 29, 2019</a></div>
+              <div><a href="#">Admin</a></div>
+              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            </div>
+            <h3 class="heading mt-2"><a href="#">Tại sao Khách hàng tiềm năng là chìa khóa sinh trưởng trong kinh doanh
+                ?</a></h3>
+            <p><a href="#" class="btn btn-primary">Read more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry justify-content-end">
+          <a href="blog-single.php" class="block-20" style="background-image: url('images/image_2.jpg');">
+          </a>
+          <div class="text pt-4">
+            <div class="meta mb-3">
+              <div><a href="#">Oct. 29, 2019</a></div>
+              <div><a href="#">Admin</a></div>
+              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            </div>
+            <h3 class="heading mt-2"><a href="#">Tại sao Khách hàng tiềm năng là chìa khóa sinh trưởng trong kinh doanh
+                ?</a></h3>
+            <p><a href="#" class="btn btn-primary">Read more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry">
+          <a href="blog-single.php" class="block-20" style="background-image: url('images/image_3.jpg');">
+          </a>
+          <div class="text pt-4">
+            <div class="meta mb-3">
+              <div><a href="#">Oct. 29, 2019</a></div>
+              <div><a href="#">Admin</a></div>
+              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            </div>
+            <h3 class="heading mt-2"><a href="#">Tại sao Khách hàng tiềm năng là chìa khóa sinh trưởng trong kinh doanh
+                ?</a></h3>
+            <p><a href="#" class="btn btn-primary">Read more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-counter ftco-section img bg-light" id="section-counter">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+        <div class="block-18">
+          <div class="text text-border d-flex align-items-center">
+            <strong class="number" data-number="60">0</strong>
+            <span>năm kinh nghiệm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+        <div class="block-18">
+          <div class="text text-border d-flex align-items-center">
+            <strong class="number" data-number="1090">0</strong>
+            <span>Tổng số xe</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+        <div class="block-18">
+          <div class="text text-border d-flex align-items-center">
+            <strong class="number" data-number="2590">0</strong>
+            <span>Khách hàng hạnh phúc</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+        <div class="block-18">
+          <div class="text d-flex align-items-center">
+            <strong class="number" data-number="67">0</strong>
+            <span>Tổng chi nhánh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<?php
+@include('footer.php');
+?>
