@@ -97,6 +97,7 @@ if ($conn->query($sql) === FALSE) {
 // Prepare and execute the INSERT statement for diem_danh_gia table
 $sql = "INSERT INTO diem_danh_gia (TX_MA, DDG_SAO, DDG_TONG) VALUES ('$nextid', '5', '100')";
 $result = $conn->query($sql);
+
 if ($conn->query($sql) === FALSE) {
     // Handle errors gracefully
     echo "Error inserting into diem_danh_gia: " . $conn->error;

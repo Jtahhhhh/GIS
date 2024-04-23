@@ -4,6 +4,12 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ /* .element-style {
+  position:sticky;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+} */
  :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -590,12 +596,14 @@ pre {
   max-width: 33.33333%; }
 
 .col-5 {
+  position:sticky;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 41.66667%;
   flex: 0 0 41.66667%;
   max-width: 41.66667%; }
 
 .col-6 {
+  position:sticky;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
@@ -632,6 +640,7 @@ pre {
   max-width: 91.66667%; }
 
 .col-12 {
+  position: sticky;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
@@ -8658,6 +8667,7 @@ h1, h2, h3, h4, h5,
   background: #1089ff; }
 
 .btn {
+  /* color: #ba8b00 !important; */
   cursor: pointer;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -8671,15 +8681,15 @@ h1, h2, h3, h4, h5,
   .btn.btn-primary {
     margin-left: 20px;
     margin-bottom: 20px;
-    background: #1089ff !important;
+    /* background: #1089ff !important; */
     border: 1px solid #1089ff !important;
     color: #fff !important; }
     .btn{
       height: 60px;
       /* margin-left: 380px; */
     margin-bottom: 20px;
-    background: #1089ff !important;
-    border: 1px solid #1089ff !important;
+    /* background: #1089ff !important; */
+    /* border: 1px solid #1089ff !important; */
     color: #fff !important;
     }
     .btn.btn-primary:hover {
@@ -9054,7 +9064,8 @@ h1, h2, h3, h4, h5,
   box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.03); }
   .services-wrap .heading-section {
     font-size: 24px;
-    font-weight: 600; }
+    font-weight: 600; 
+  }
 
 .services .icon {
   width: 90px;
@@ -9063,9 +9074,11 @@ h1, h2, h3, h4, h5,
   border: 1px solid rgba(0, 0, 0, 0.05);
   margin: 0 auto;
   margin-bottom: 20px; }
+
   .services .icon span {
     font-size: 40px;
-    color: #1089ff; }
+    color:#d39e00; 
+  }
 
 .services h3 {
   font-size: 17px;
@@ -9180,7 +9193,7 @@ textarea.form-control {
   visibility: hidden; }
 
 .bg-primary {
-  background: #1089ff !important; }
+  background: #FFFF33 !important; }
 
 .bg-black {
   background: #000000; }

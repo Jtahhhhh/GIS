@@ -1,4 +1,4 @@
-function showMapIndex() {
+function showMapIndex(latitude, longitude) {
   const carMakerUrl = "images/car-maker.png";
   const userMakerUrl = "images/user-maker.png";
   const userMaker = L.icon({
@@ -20,10 +20,10 @@ function showMapIndex() {
 
   var route = null;
   var popup = null;
-  jsonData.forEach(function (item) {
-    const marker = L.marker([item.tt_toadox, item.tt_toadoy], {
-      icon: carMaker,
-    }).addTo(map);
+  // jsonData.forEach(function (item) {
+  //   const marker = L.marker([item.tt_toadox, item.tt_toadoy], {
+  //     icon: carMaker,
+  //   }).addTo(map);
 
     marker.on("click", function () {
       if (popup) {
@@ -73,11 +73,11 @@ function showMapIndex() {
         // })
         .addTo(map);
     });
-  });
+  };
 
   const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
-}
+

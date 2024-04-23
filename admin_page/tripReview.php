@@ -576,7 +576,7 @@
     // Tạo điểm xuất phát và điểm đích
 // Tạo điểm xuất phát và điểm đích
 var startPoint = L.latLng(bdx, bdy);
-var endPoint = L.latLng(ktx, kty);
+var endPoint = L.latLng(kty, ktx);
 
 // Tạo routing control và thêm vào bản đồ
 var routingControl = L.Routing.control({
