@@ -1,8 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.php"> <img alt="image" src="../images/LOGOFOX.png" style="height: 3rem;" class="header-logo" /> 
-            <!-- <span                class="logo-name">FOX TAXI</span> -->
+            <a href="index.php"> <img alt="image" src="../images/logotaxi.png" style="height: 100px;" class="header-logo" /> 
             </a>
           </div>
           <ul class="sidebar-menu">

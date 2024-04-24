@@ -35,14 +35,7 @@ if(isset($_POST["dangky"])){
       }
       $khid = $kh_max_id+1;
 
-      // Lấy id thành phố
-      $sql_tp = "select max(TP_MA) as max_id from thanh_pho";
-      $result = $conn -> query($sql_tp);
-      if ($result->num_rows > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $tp_max_id = $row["max_id"];
-      }
-      $tpid = $tp_max_id+1;
+     
 
       // Lấy id quận huyện
       $sql_qh = "select max(QH_MA) as max_id from quan_huyen";
@@ -52,32 +45,14 @@ if(isset($_POST["dangky"])){
             $qh_max_id = $row["max_id"];
       }
       $qhid = $qh_max_id+1;
-
-      
-      $sql_tp = "insert into thanh_pho values($tpid, '".$tp."')";
-      if($conn->query( $sql_tp ) == TRUE) {
-        $sql_qh = "INSERT INTO `quan_huyen`(`QH_MA`, `TP_MA`, `QH_TEN`) VALUES ('".$qhid."','".$tpid."','".$quanhuyen."')";
-        if($conn->query($sql_qh) == TRUE){
-          $sql = "insert into khach_hang values($khid, '".$$qhid."', '".$ten."', '".$sdt."', '".$email."', '".$username."', '".$mk."', '".$dtl."')";
+          $sql = " INSERT INTO `khach_hang` values($khid, '".$$qhid."', '".$ten."', '".$sdt."', '".$email."', '".$username."', '".$mk."', '".$dtl."')";
           if($conn->query($sql) == TRUE){
             $ms = "Đăng ký tài khoản thành công!";
             echo "<script type='text/javascript'>alert('$ms');</script>";
             header('Refresh: 0;url=login.php');
           } else{
             echo "<br>Error: " . $sql . "<br>" . $conn->error;
-          }
-        } else{
-          echo "<br>Error: " . $sql_qh . "<br>" . $conn->error;
-        }
-      } else{
-        echo "<br>Error: " . $sql_tp . "<br>" . $conn->error;
-      }
-
-
-
-      
-
-
+          }  
     }
   }
 

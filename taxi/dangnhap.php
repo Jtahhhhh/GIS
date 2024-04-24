@@ -1,6 +1,7 @@
 <?php
 
 require 'connect.php';
+session_start();
 
 $username = mysqli_real_escape_string($conn, $_POST['username']);
 $password = mysqli_real_escape_string($conn, $_POST['psw']);
@@ -29,7 +30,7 @@ if ($result->num_rows > 0) {
 } else {
   $message = "Tài khoản hoặc mật khẩu không đúng. Vui lòng thử lại!.";
   echo "<script type='text/javascript'>alert('$message');</script>";
-  header('Refresh: 0;url=index.php');
+  header('Refresh: 10;url=index.php');
 }
 $conn->close();
 

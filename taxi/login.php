@@ -1,6 +1,6 @@
 <?php
 $activate = "login";
-// include('connect.php');
+include('connect.php');
 include('header.php');
 if (isset($_GET['rl'])){
   echo '<script>alert("Vui lòng đăng nhập để đặt xe!")</script>';
@@ -69,17 +69,9 @@ if (isset($_GET['rl'])){
                                         <label for="inputNumberl4" class="form-label">Số điện thoại<span class="error"></span></label>
                                         <input type="text" class="form-control" id="sdt" name="sdt">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="inputNumberl4" class="form-label">Thành phố<span class="error"></span></label>
-                                        <input type="text" class="form-control" id="tp" name="tp">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputNumberl4" class="form-label">Quận/ Huyện<span class="error"></span></label>
-                                        <input type="text" class="form-control" id="qh" name="qh">
-                                    </div>
+                                   
 
-
-                                    <!-- <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <label for="inputCity" class="form-label">Giới tính</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="gioitinh" id="flexRadioDefault1" value="1">
@@ -94,15 +86,15 @@ if (isset($_GET['rl'])){
                                             </label>
                                         </div>
 
-                                    </div> -->
-                                    <!-- <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-6">
                                         <label for="inputPassword4" class="form-label">Quận Huyện<span class="error">*</span></label>
                                         <select class="form-select form-control" id="qh" name="qh">
                                             <option value="" selected>Chọn quận/huyện</option>
                                             <?php
                                             
                                             // Truy vấn để lấy danh sách quận/huyện
-                                            $sql = "SELECT QH_MA, QH_TEN FROM quanhuyen";
+                                            $sql = "SELECT QH_MA, QH_TEN FROM quan_huyen";
                                             $result = $conn->query($sql);
 
                                             if ($result->num_rows > 0) {
@@ -115,7 +107,7 @@ if (isset($_GET['rl'])){
                                             $conn->close();
                                             ?>
                                         </select>
-                                    </div> -->
+                                    </div> 
                                     <div class="col-md-12">      
                                         <button type="submit" class="mt-2 btn btn-success"  name="dangky">Đăng ký </button>
                                     </div>

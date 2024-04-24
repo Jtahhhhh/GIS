@@ -2,6 +2,7 @@
 $activate = "index";
 @include('header.php');
 
+
 // @include('chon_diemdi.php');
 // @include('luudiemdi.php');
 // @include('chon_diemden.php');
@@ -47,7 +48,6 @@ if (isset($_SESSION['kh_ma'])) {
             <script>
               var latitude = ""
               var longitude = ""
-
               function getLocation() {
                 if (navigator.geolocation) {
                   navigator.geolocation.getCurrentPosition(showPosition);
@@ -55,103 +55,29 @@ if (isset($_SESSION['kh_ma'])) {
                   document.getElementById("location").innerHTML = "Trình duyệt của bạn không hỗ trợ định vị.";
                 }
               }
-
-              function showMapIndex(latitude, longitude) {
-                const carMakerUrl = "images/car-maker.png";
-                const userMakerUrl = "images/user-maker.png";
-                const userMaker = L.icon({
-                  iconUrl: userMakerUrl,
-                  iconSize: [40, 50],
-                  iconAnchor: [20, 50],
-                });
-                const carMaker = L.icon({
-                  iconUrl: carMakerUrl,
-                  iconSize: [40, 50],
-                  iconAnchor: [20, 50],
-                });
-
-                const map = L.map("map").setView([latitude, longitude], 13); //khu vực hiển thị theo vị trí hiện tại
-
-                var marker = L.marker([latitude, longitude], {
-                  icon: userMaker
-                }).addTo(map); //đặt vị trí hiện tại của khách hàng
-
-                var popup = L.popup();
-
-                var route = null;
-                var popup = null;
-                // jsonData.forEach(function (item) {
-                //   const marker = L.marker([item.tt_toadox, item.tt_toadoy], {
-                //     icon: carMaker,
-                //   }).addTo(map);
-
-                marker.on("click", function() {
-                  if (popup) {
-                    popup.remove();
-                  }
-                  popup = L.popup()
-                    .setLatLng([item.tt_toadox, item.tt_toadoy])
-                    .setContent(
-                      `<b>Tài xế:</b> ${item.tx_ten}</br>
-                            <b>Xe:</b> ${item.x_mota}</br>
-                            <form class="mt-2 float-end" action="#datxe" method="post">
-                            <input type="hidden" name="tx_ma" value="${item.tx_ma}">
-                            <button type="submit" class="btn btn-success">Đặt ngay</button>
-                        </form>`
-                    )
-                    .openOn(map);
-
-                  if (route) {
-                    route.remove();
-                  }
-                  route = L.Routing.control({
-                    waypoints: [
-                      L.latLng(latitude, longitude),
-                      L.latLng(item.tt_toadox, item.tt_toadoy),
-                    ],
-                    draggableWaypoints: false,
-                    routeWhileDragging: false,
-                    fitSelectedRoutes: false,
-                    lineOptions: {
-                      styles: [{
-                        color: "#19d600",
-                        opacity: 0.6,
-                        weight: 6
-                      }],
-                    },
-                    createMarker: function() {
-                      return null;
-                    },
-                  });
-                  route
-                    // .on("routesfound", function (e) {
-                    // console.log(e.routes[0].waypoints)
-                    // e.routes[0].coordinates.forEach(function(coord, idx){
-                    //   setTimeout(()=>{
-                    //     if ((idx+1) === e.routes[0].coordinates.length){
-                    //       alert((idx+1) + " - toi ")
-                    //     }
-                    //     marker.setLatLng([coord.lat, coord.lng])
-                    //   }, 100*idx)
-                    // })
-                    // })
-                    .addTo(map);
-                });
-                const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                  maxZoom: 19,
-                  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                }).addTo(map);
-              };
-
-
-
-
               function showPosition(position) {
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
-                console.log(latitude, longitude)
-                showMapIndex(latitude, longitude)
 
+                const apiUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+
+                fetch(apiUrl)
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data)
+                    showCurrentLocation(data)
+                  })
+                  .catch(error => {
+                    console.error('Lỗi khi gửi yêu cầu API:', error);
+                  });
+
+                function showCurrentLocation(data) {
+                  $("#crLocation").val(data.name)
+                  $("#diemdix").val(latitude)
+                  $("#diemdiy").val(longitude)
+                  $("#tendiemdi").val(data.name)
+                  showMapIndex()
+                }
               }
 
               getLocation()
@@ -251,18 +177,20 @@ if (isset($_SESSION['kh_ma'])) {
           <?php
           } else {
             $matx = $_POST['tx_ma'];
-            $sql = "SELECT * FROM taixe tx
-                          join phutrach pt on pt.TX_MA = tx.TX_MA
-                          join xe x on x.X_MA = pt.X_MA
-                          where tx.TX_MA = $matx and (pt.TD_DATE, tx.TX_MA) IN (
-                            select max(TD_DATE), TX_MA from phutrach GROUP BY TX_MA
-                          )";
+            $sql = "select x.*, tx.tx_ten, x.x_ten, x.x_bienso, ddg.ddg_sao, tx.*
+                        from chi_tiet_xe ct
+                        inner join tai_xe tx on tx.TX_MA=ct.TX_MA
+                        inner join xe x on x.X_MA=ct.X_MA
+                        inner join trang_thai tt on tt.TX_MA=tx.TX_MA
+                        inner join diem_danh_gia ddg on ddg.TX_MA=tx.TX_MA
+                        where tt.TT_TINHTRANG=0
+                        LIMIT 4;";
             $rs = querySqlwithResult($conn, $sql);
             $tt = $rs->fetch_assoc();
-            if ($tt['TX_HINHANH'] == NULL)
-              $anhtx = "default.png";
-            else
-              $anhtx = $tt['TX_HINHANH'];
+            // if ($tt['TX_HINHANH'] == NULL)
+            //   $anhtx = "default.png";
+            // else
+            //   $anhtx = $tt['TX_HINHANH'];
           ?>
             <div class="col-lg-6 col-md-12 d-flex align-items-center ml-4">
               <div class="services-wrap rounded-right w-100">
@@ -270,7 +198,7 @@ if (isset($_SESSION['kh_ma'])) {
                 <div class="row d-flex mb-4">
                   <div class="col-4 d-flex flex-column justify-content-center align-items-center">
                     <div style="width: 8rem; height: 8rem">
-                      <img src="images/taixe/<?php echo $anhtx; ?>" alt="" class="fit-image">
+                      <img src="images/taixe/default.png" alt="" class="fit-image">
                     </div>
                     <span class="mt-4">
                       <?php echo $tt['TX_TEN'] ?>
@@ -286,10 +214,10 @@ if (isset($_SESSION['kh_ma'])) {
                   </div>
                   <div class="col-5 d-flex flex-column justify-content-center align-items-center">
                     <div style="width: 8rem; height: 8rem">
-                      <img src="images/xe/<?php echo $tt['X_HINHANH']; ?>" alt="" class="fit-image" style="border-radius: 100% !important;">
+                      <img src="images/xe/xe1.jpg" alt="" class="fit-image" style="border-radius: 100% !important;">
                     </div>
                     <span class="mt-4">
-                      <?php echo $tt['X_MOTA'] ?>
+                      <?php echo $tt['x_bienso'] ?>
                     </span>
                   </div>
                 </div>
@@ -313,27 +241,24 @@ if (isset($_SESSION['kh_ma'])) {
       </div>
     </div>
     <div class="row">
-      <div class="col-12" style="position:sticky">
-      
+      <div class="col-12">
         <div class="row">
           <div class="col-6">
             <?php
-            if (isset($_GET['locateden'])) {
-              $location = $_GET['locateden'];
-              $latden = $_GET['latden'];
-              $lngden = $_GET['lngden'];
-              $distance = $_GET['kcach'];
-            } else {
-              $location = null;
-              $latden = '1';
-              $lngden = '1';
-              $distance = 0;
-            }
+              if (isset($_GET['locateden'])){
+                $location = $_GET['locateden'];
+                $latden = $_GET['latden'];
+                $lngden = $_GET['lngden'];
+                $distance = $_GET['kcach'];
+              } else {
+                $location = null;
+                $latden = '1';
+                $lngden = '1';
+                $distance = 0;
+              }
 
             
-
-
-            $sql = "select x.*, tx.tx_ten, x.x_ten, x.x_bienso, ddg.ddg_sao
+            $sql = "select x.*, tx.tx_ten, x.x_ten, x.x_bienso, ddg.ddg_sao, tx.TX_viTriX, tx.TX_viTriY, tx.tx_ma
                       from chi_tiet_xe ct
                       inner join tai_xe tx on tx.TX_MA=ct.TX_MA
                       inner join xe x on x.X_MA=ct.X_MA
@@ -345,8 +270,9 @@ if (isset($_SESSION['kh_ma'])) {
             $data = array();
             while ($x = $rs->fetch_assoc()) {
               $data[] = $x;
-            ?>
-              <div class="container p-3 py-3 mt-2" style="border-radius: 15px; background-color:white; box-shadow: 5px 5px 5px rgba(0,0,0,0.3);">
+              ?>
+              <div class="container p-3 py-3 mt-2"
+                style="border-radius: 15px; background-color:white; box-shadow: 5px 5px 5px rgba(0,0,0,0.3);">
                 <div class="card-choose">
                   <div style="width: 5rem; height: 5rem;">
                     <img src="images/xe/xe1.jpg" class="fit-image" alt="">
@@ -357,24 +283,26 @@ if (isset($_SESSION['kh_ma'])) {
                         <?php echo $x['tx_ten'] ?>
                       </span>
                     </span>
-                    <?php echo "Loại xe: " . $x['x_ten'] . " Biến số: " . $x["x_bienso"] ?>
+                    <?php echo "Loại xe: " . $x['x_ten'] . " Biến số: " . $x["x_bienso"]?>
                     <span>
                       Đánh giá: <?php echo $x['ddg_sao'] ?> <i style="color: #f7d219;" class="fas fa-star"></i>
                     </span>
                   </div>
                   <form action="#datxe" method="post">
-                    <button type="submit" class="btn btn-success" style="color:#f7d219">Đặt ngay</button>
+                    <button type="submit" class="btn btn-success">Đặt ngay</button>
                   </form>
                 </div>
               </div>
-            <?php
+              <?php
             }
             $jsonData = json_encode($data);
             ?>
 
           </div>
           <div class="col-6">
-            <div id="map" class="mt-4 map leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+            <div id="map"
+              class="mt-4 map leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+              tabindex="0">
               <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"></div>
             </div>
             <div class="leaflet-control-container">
@@ -387,13 +315,12 @@ if (isset($_SESSION['kh_ma'])) {
           <script>
             var jsonData = <?php echo $jsonData; ?>
           </script>
-          <!-- <script src="js/map_index.js"></script> -->
+          <script src="js/map_index.js"></script>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 
 

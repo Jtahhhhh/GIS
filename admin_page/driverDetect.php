@@ -453,7 +453,7 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Review</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Status</h6>
                         </div>
                        <div class="table-responsive">
                 <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
@@ -462,18 +462,8 @@
                             <thead>
                             <tr id="1">
 
-                            <th>Sao</th>
-                            <th>Đánh Giá</th>
-                            
-                            </tr>
-                            </thead>
-                        <tbody id="Information" >
-                        <?php
-                                    echo "<tr>
-                                    <td>$sao</td>
-                                    <td>$noidung</td>
-                                   </tr>"
-                                   ?>      
+                            <th> Đang Thực Hiện</th>
+                         
                         </tbody>
                 </table>
                     </div>
@@ -576,7 +566,7 @@
     // Tạo điểm xuất phát và điểm đích
 // Tạo điểm xuất phát và điểm đích
 var startPoint = L.latLng(bdx, bdy);
-var endPoint = L.latLng(kty, ktx);
+var endPoint = L.latLng(ktx, kty);
 
 // Tạo routing control và thêm vào bản đồ
 var routingControl = L.Routing.control({

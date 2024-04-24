@@ -2184,8 +2184,8 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745; }
+  background-color: #3C7363;
+  border-color: #3C7363; }
   .btn-success:hover {
     color: #fff;
     background-color: #218838;
@@ -8346,7 +8346,7 @@ h1, h2, h3, h4, h5,
         padding-right: 0 !important;
         padding-bottom: 0 !important; } }
     .ftco-navbar-light.scrolled .nav-item.active > a {
-      color: #1089ff !important; }
+      color: #3c7363 !important; }
     .ftco-navbar-light.scrolled .nav-item.cta > a {
       color: #fff !important;
       background: #1089ff;
@@ -8453,7 +8453,7 @@ h1, h2, h3, h4, h5,
   .slider-text .icon-wrap .icon {
     width: 70px;
     height: 70px;
-    background: #01d28e;
+    background: #3C7363;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
@@ -8516,7 +8516,7 @@ h1, h2, h3, h4, h5,
   -moz-box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.06); }
   .request-form h2 {
-    color: #fff;
+    color: #000;
     font-size: 22px;
     font-weight: 600; }
   .request-form p {
@@ -8546,7 +8546,7 @@ h1, h2, h3, h4, h5,
       width: 100%;
       display: block !important; }
   .request-form label.label {
-    color: #fff;
+    color: #000;
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 600; }
@@ -8705,7 +8705,7 @@ h1, h2, h3, h4, h5,
         background: #1089ff;
         color: #fff; }
   .btn.btn-secondary {
-    background: #01d28e !important;
+    background: #3c7363 !important;
     border: 1px solid #01d28e !important;
     color: #fff !important; }
     .btn.btn-secondary:hover {
@@ -9193,7 +9193,7 @@ textarea.form-control {
   visibility: hidden; }
 
 .bg-primary {
-  background: #FFFF33 !important; }
+  background: #FCF0CF !important; }
 
 .bg-black {
   background: #000000; }
@@ -9366,7 +9366,7 @@ textarea.form-control {
   font-size: 18px;
   display: block;
   margin-bottom: 5px;
-  color: #1089ff;
+  color: #3c7363;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
